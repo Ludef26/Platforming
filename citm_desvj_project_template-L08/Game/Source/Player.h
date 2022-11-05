@@ -28,9 +28,10 @@ public:
 	void OnCollision(PhysBody* physA, PhysBody* physB);
 
 
-public:
+
 
 public:
+
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;

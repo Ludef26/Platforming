@@ -195,15 +195,9 @@ bool Map::Load()
 
 
 
-    
-
-
-
-
 
     
-    // L07 DONE 3: Create colliders
-    // Later you can create a function here to load and create the colliders from the map
+   //------------------------------------ESCENARIO (No consiguo que use lso tiles para las hitbox)
     //Plataforma 1
     PhysBody* c1 = app->physics->CreateRectangle(256+145, 608, 288, 64, STATIC);
     // L07 DONE 7: Assign collider type
@@ -228,17 +222,20 @@ bool Map::Load()
     PhysBody* c5 = app->physics->CreateRectangle(95, 655, 64, 96, STATIC);
     // L07 DONE 7: Assign collider type
     c5->ctype = ColliderType::PLATFORM;
+    //-------------------------------------------------------------------------------
 
 
+
+    //------------------------------SENSOR PARA CAMBIAR LA CAMARA
     PhysBody* cambio = app->physics->CreateRectangleSensor(1000, 675, 10, 16, bodyType::STATIC);
     cambio->ctype = ColliderType::CHANGECAMERA;
 
 
+    //------------------------------PRIMERA META DEL JUGADOR
+    meta = app->physics->CreateRectangleSensor(2000, 675, 10, 16, bodyType::STATIC);
+    meta->ctype = ColliderType::WIN;
     
-        meta = app->physics->CreateRectangleSensor(2000, 675, 10, 16, bodyType::STATIC);
-        meta->ctype = ColliderType::WIN;
-    
-    
+   
    
         
    

@@ -32,9 +32,9 @@ bool Item::Start() {
 	
 	// L07 DONE 4: Add a physics to an item - initialize the physics body
 	pbody = app->physics->CreateRectangleSensor(position.x + 16, position.y + 16, 10,16, bodyType::STATIC);
-
-	// L07 DONE 7: Assign collider type
 	pbody->ctype = ColliderType::ITEM;
+
+	
 
 
 	
@@ -49,6 +49,7 @@ bool Item::Update()
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
 	app->render->DrawTexture(texture, position.x, position.y);
+
 
 	return true;
 }

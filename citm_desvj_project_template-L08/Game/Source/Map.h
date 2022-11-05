@@ -154,7 +154,7 @@ public:
 	MapData mapData;
 	
 
-	PhysBody* meta;
+	PhysBody* meta; //Sensor de ganar
 private:
 
     SString mapFileName;
