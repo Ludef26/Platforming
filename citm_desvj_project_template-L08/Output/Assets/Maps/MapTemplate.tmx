@@ -1600,6 +1600,9 @@
   </data>
  </layer>
  <layer id="5" name="Fondo1" width="64" height="24">
+	 <properties>
+		 <property name="Draw" type="bool" value="true"/>
+	 </properties>
   <data>
    <tile/>
    <tile/>
