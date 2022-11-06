@@ -42,7 +42,7 @@ public:
 
 	int pickCoinFxId;
 
-
+	float limMap=2.0f;
 	
 	bool onFloor = false;
 	int jumpTime=600;

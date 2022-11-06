@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Map.h"
 #include "EntityManager.h"
+#include "Window.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -30,19 +31,17 @@ bool Player::Awake() {
 	//L02: DONE 5: Get Player parameters from XML
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
-	texturePath = parameters.attribute("texturepath").as_string();
+	texturePath = parameters.attribute("p.Idle").as_string();
 
 	return true;
 }
 
 bool Player::Start() {
 
-	//initilize textures
-	texture = app->tex->Load(texturePath);
 
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	
-	pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 16,30, bodyType::DYNAMIC);
+	pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 16,23, bodyType::DYNAMIC);
 	pbody->body->SetFixedRotation(true); // Asi no rota la hit box del jugador
 
 	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
@@ -59,18 +58,13 @@ bool Player::Start() {
 
 bool Player::Update()
 {
-	
+	b2Vec2 vel = pbody->body->GetLinearVelocity();
 
-	
-	
-
-
-
-
-b2Vec2 vel = pbody->body->GetLinearVelocity();
-
-	// L07 DONE 5: Add physics to the player - updated player position using physics
 	int speed = 5; 
+
+	texture = app->tex->Load(texturePath);
+	
+	// L07 DONE 5: Add physics to the player - updated player position using physics
 	
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && onFloor ==true) {
@@ -78,6 +72,9 @@ b2Vec2 vel = pbody->body->GetLinearVelocity();
 		onFloor = false;
 		jump = true;
 		LOG("Jump");
+		//Sprite de salto
+		texturePath = parameters.attribute("p.Jump").as_string();
+
 		for (jumpTime; jumpTime >= 0;jumpTime--) {
 
 		vel.y = b2Max(-10 - 0.1f, -5.0f);
@@ -90,22 +87,46 @@ b2Vec2 vel = pbody->body->GetLinearVelocity();
 		}
 
 	}
+	else if (onFloor==true) 
+	{
+	//Sprite de Idle
+	texturePath = parameters.attribute("p.Idle").as_string();
+	}
+
 	//-------------------------GRAVEDAD CUANDO NO SALTAS
-	if (onFloor == false && jumpTime <= 0) {
+	if (onFloor == false && jumpTime <= 0)
+	{
 		vel.y = b2Min(speed + 0.1f, 5.0f);
 	}
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
+
+	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+	{
 		//
-		
 	}
 		
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ) {
+	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ) 
+	{
+		
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && onFloor==false ) 
+		{
+			texturePath = parameters.attribute("p.JumpL").as_string();
+		}
+		else
+		texturePath = parameters.attribute("p.Left").as_string();
 
 		vel.x = b2Max(-speed - 0.1f, -5.0f);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT ) {
+	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT )
+	{
 		
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && onFloor == false)
+		{
+			texturePath = parameters.attribute("p.JumpR").as_string();
+		}
+		else
+		texturePath = parameters.attribute("p.Right").as_string();
+
 		vel.x = b2Min(speed + 0.1f, 5.0f);
 	}
 
@@ -117,7 +138,12 @@ b2Vec2 vel = pbody->body->GetLinearVelocity();
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
-	app->render->DrawTexture(texture, position.x , position.y);
+	app->render->DrawTexture(texture, position.x, position.y);
+
+	//--------------------------------Posicion Camara
+	app->render->camera.y = -position.y;
+	app->render->camera.x = 400 - position.x * 2.0f;
+	
 	
 	return true;
 }
@@ -147,7 +173,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			break;
 		//-----------------------------CAMBIO DE POSCION DE CAMARA 
 		case ColliderType::CHANGECAMERA:
-			app->render->camera.x = -position.x-60;
+			//app->render->camera.x = -position.x-60;
 			LOG("Collision CHANGE CAMERA");
 			break;
 
