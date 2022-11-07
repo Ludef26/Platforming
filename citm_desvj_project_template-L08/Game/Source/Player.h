@@ -31,11 +31,12 @@ public:
 
 
 public:
-
+	Item* item;
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
 	const char* texturePath;
+	const char* lastSprite;
 
 	// L07 DONE 5: Add physics to the player - declare a Physics body
 	PhysBody* pbody;

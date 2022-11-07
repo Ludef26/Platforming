@@ -21,6 +21,7 @@ bool Item::Awake() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
+	isPicked = parameters.attribute("picked").as_bool();
 
 	return true;
 }
@@ -28,11 +29,14 @@ bool Item::Awake() {
 bool Item::Start() {
 
 	//initilize textures
+	if (isPicked == false) {
 	texture = app->tex->Load(texturePath);
-	
 	// L07 DONE 4: Add a physics to an item - initialize the physics body
+
 	pbody = app->physics->CreateRectangleSensor(position.x + 16, position.y + 16, 10,16, bodyType::STATIC);
 	pbody->ctype = ColliderType::ITEM;
+	}
+	
 
 	
 
@@ -44,12 +48,19 @@ bool Item::Start() {
 
 bool Item::Update()
 {
+	if (isPicked == true)
+	{
+		position.x = 10;
+	}
+	if (isPicked == false)
+	{
 	// L07 DONE 4: Add a physics to an item - update the position of the object from the physics.  
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
 
 	app->render->DrawTexture(texture, position.x, position.y);
-
+	}
+	
 
 	return true;
 }

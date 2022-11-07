@@ -11,9 +11,9 @@
 Render::Render() : Module()
 {
 	name.Create("renderer");
-	background.r = 0;
-	background.g = 0;
-	background.b = 0;
+	background.r = 100;
+	background.g = 255;
+	background.b = 255;
 	background.a = 0;
 }
 

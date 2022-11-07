@@ -12,6 +12,7 @@
 #include "Map.h"
 #include "EntityManager.h"
 #include "Window.h"
+#include "Entity.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -32,12 +33,15 @@ bool Player::Awake() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("p.Idle").as_string();
-
+	
+	
 	return true;
 }
 
 bool Player::Start() {
+	lastSprite = parameters.attribute("p.Jump").as_string();
 
+	texture = app->tex->Load(texturePath);
 
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	
@@ -61,14 +65,19 @@ bool Player::Update()
 	b2Vec2 vel = pbody->body->GetLinearVelocity();
 
 	int speed = 5; 
-
-	texture = app->tex->Load(texturePath);
 	
 	// L07 DONE 5: Add physics to the player - updated player position using physics
 	
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && onFloor ==true) {
 		//
+		if (lastSprite != parameters.attribute("p.Jump").as_string()) 
+		{
+			texturePath = parameters.attribute("p.Jump").as_string();
+			lastSprite = texturePath;
+			texture = app->tex->Load(texturePath);
+		}
+			
 		onFloor = false;
 		jump = true;
 		LOG("Jump");
@@ -87,10 +96,18 @@ bool Player::Update()
 		}
 
 	}
+
 	else if (onFloor==true) 
 	{
 	//Sprite de Idle
-	texturePath = parameters.attribute("p.Idle").as_string();
+		
+		if (lastSprite != parameters.attribute("p.Idle").as_string())
+		{
+			texturePath = parameters.attribute("p.Idle").as_string();
+			lastSprite = texturePath;
+			texture = app->tex->Load(texturePath);
+		}
+
 	}
 
 	//-------------------------GRAVEDAD CUANDO NO SALTAS
@@ -98,6 +115,7 @@ bool Player::Update()
 	{
 		vel.y = b2Min(speed + 0.1f, 5.0f);
 	}
+
 
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 	{
@@ -107,25 +125,49 @@ bool Player::Update()
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ) 
 	{
 		
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && onFloor==false ) 
+		if (onFloor == true)
 		{
-			texturePath = parameters.attribute("p.JumpL").as_string();
+			
 		}
-		else
-		texturePath = parameters.attribute("p.Left").as_string();
+		
+
+		if (onFloor==false) 
+		{
+			if (lastSprite != parameters.attribute("p.JumpL").as_string())
+			{
+				texturePath = parameters.attribute("p.JumpL").as_string();
+				lastSprite = texturePath;
+				texture = app->tex->Load(texturePath);
+			}
+		}
+		
+		
 
 		vel.x = b2Max(-speed - 0.1f, -5.0f);
 	}
 
+	
+
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT )
 	{
 		
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && onFloor == false)
+
+		if (onFloor == true)
 		{
-			texturePath = parameters.attribute("p.JumpR").as_string();
+
 		}
-		else
-		texturePath = parameters.attribute("p.Right").as_string();
+
+
+		if (onFloor == false)
+		{
+			if (lastSprite != parameters.attribute("p.JumpR").as_string())
+			{
+				texturePath = parameters.attribute("p.JumpR").as_string();
+				lastSprite = texturePath;
+				texture = app->tex->Load(texturePath);
+			}
+		}
+		
 
 		vel.x = b2Min(speed + 0.1f, 5.0f);
 	}
@@ -164,6 +206,9 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::ITEM:
 			LOG("Collision ITEM");
 			//------------------------------------Posible forma para destruir entidades
+			
+			//item->isPicked = true;
+
 			//app->entityManager->DestroyEntity();
 			break;
 		//-----------------------------SUELO
@@ -188,3 +233,4 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 
 }
+

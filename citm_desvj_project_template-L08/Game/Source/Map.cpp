@@ -37,7 +37,7 @@ void Map::Draw()
 {
     if(mapLoaded == false)
         return;
-
+    
     /*
     // L04: DONE 6: Iterate all tilesets and draw all their 
     // images in 0,0 (you should have only one tileset for now)
@@ -65,7 +65,7 @@ void Map::Draw()
             {
                 for (int y = 0; y < mapLayerItem->data->height; y++)
                 {
-                    // L05: DONE 9: Complete the draw function
+                    //Optenemos el Gid de las coordenadas dadas
                     int gid = mapLayerItem->data->Get(x, y);
 
                     //L06: DONE 3: Obtain the tile set using GetTilesetFromTileId
@@ -78,6 +78,7 @@ void Map::Draw()
                         pos.x,
                         pos.y,
                         &r);
+
                     
                 }
             }
