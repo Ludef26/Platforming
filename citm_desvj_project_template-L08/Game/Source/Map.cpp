@@ -223,17 +223,42 @@ bool Map::Load()
     PhysBody* c5 = app->physics->CreateRectangle(95, 655, 64, 96, STATIC);
     // L07 DONE 7: Assign collider type
     c5->ctype = ColliderType::PLATFORM;
+
+    PhysBody* c6 = app->physics->CreateRectangle(752, 687, 224, 32, STATIC);
+    // L07 DONE 7: Assign collider type
+    c6->ctype = ColliderType::PLATFORM;
+
+
+    PhysBody* c7 = app->physics->CreateRectangle(1552, 687, 224, 32, STATIC);
+    // L07 DONE 7: Assign collider type
+    c7->ctype = ColliderType::PLATFORM;
+
+    //LIMITE MAPA izquierda
+    PhysBody* c8 = app->physics->CreateRectangle(32, 687, 66, 1004, STATIC);
+    // L07 DONE 7: Assign collider type
+    c8->ctype = ColliderType::PLATFORM;
+
+    //LIMITE MAPA Derecha
+    PhysBody* c9 = app->physics->CreateRectangle(2018, 78, 66, 1004, STATIC);
+    // L07 DONE 7: Assign collider type
+    c9->ctype = ColliderType::PLATFORM;
+
+    PhysBody* c10 = app->physics->CreateRectangle(2000, 610, 94, 66,  STATIC);
+    // L07 DONE 7: Assign collider type
+    c10->ctype = ColliderType::PLATFORM;
+
+
     //-------------------------------------------------------------------------------
 
 
 
     //------------------------------SENSOR PARA CAMBIAR LA CAMARA
-    PhysBody* cambio = app->physics->CreateRectangleSensor(1000, 675, 10, 16, bodyType::STATIC);
-    cambio->ctype = ColliderType::CHANGECAMERA;
+   // PhysBody* cambio = app->physics->CreateRectangleSensor(1000, 675, 10, 16, bodyType::STATIC);
+    //cambio->ctype = ColliderType::CHANGECAMERA;
 
 
     //------------------------------PRIMERA META DEL JUGADOR
-    meta = app->physics->CreateRectangleSensor(2000, 675, 10, 16, bodyType::STATIC);
+    meta = app->physics->CreateRectangleSensor(2000, 675, 10, 30, bodyType::STATIC);
     meta->ctype = ColliderType::WIN;
     
    

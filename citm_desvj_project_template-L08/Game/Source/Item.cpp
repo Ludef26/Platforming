@@ -48,9 +48,12 @@ bool Item::Start() {
 
 bool Item::Update()
 {
+	pugi::xml_attribute attr = parameters.attribute("picked");
+
 	if (isPicked == true)
 	{
-		position.x = 10;
+		attr.set_value(true);
+		isPicked = true;
 	}
 	if (isPicked == false)
 	{

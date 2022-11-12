@@ -45,7 +45,7 @@ bool Player::Start() {
 
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	
-	pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 16,23, bodyType::DYNAMIC);
+	pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 16,20, bodyType::DYNAMIC);
 	pbody->body->SetFixedRotation(true); // Asi no rota la hit box del jugador
 
 	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
