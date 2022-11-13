@@ -65,120 +65,156 @@ bool Player::Start() {
 
 bool Player::Update()
 {
+		
 	b2Vec2 vel = pbody->body->GetLinearVelocity();
+		int speed = 5;
+	
+	//PARA IR AL PRINCIPIO
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		pbody->body->SetTransform(b2Vec2(4, 13), 0);
+	}
+		
 
-	int speed = 5; 
-	
-	// L07 DONE 5: Add physics to the player - updated player position using physics
-	
-	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && onFloor ==true) {
-		//
-		if (lastSprite != parameters.attribute("p.Jump").as_string()) 
+	//PARA IR AL FINAL
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		pbody->body->SetTransform(b2Vec2(35, 13), 0);
+	}
+
+
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	{
+		godMod = !godMod;
+	}
+
+
+	if (godMod == true) {
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
+			vel.x = b2Max(-speed - 0.1f, -5.0f);
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			vel.x = b2Max(speed + 0.1f, +5.0f);
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			vel.y = b2Max(-speed - 0.1f, -5.0f);
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			vel.y = b2Max(-speed - 0.1f, -5.0f);
+		}
+	}
+
+	else {
+
+
+
+		// L07 DONE 5: Add physics to the player - updated player position using physics
+
+		//L02: DONE 4: modify the position of the player using arrow keys and render the texture
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && onFloor == true) {
+			//
+			if (lastSprite != parameters.attribute("p.Jump").as_string())
+			{
+				texturePath = parameters.attribute("p.Jump").as_string();
+				lastSprite = texturePath;
+				texture = app->tex->Load(texturePath);
+			}
+
+			onFloor = false;
+			jump = true;
+			LOG("Jump");
+			//Sprite de salto
 			texturePath = parameters.attribute("p.Jump").as_string();
-			lastSprite = texturePath;
-			texture = app->tex->Load(texturePath);
-		}
-			
-		onFloor = false;
-		jump = true;
-		LOG("Jump");
-		//Sprite de salto
-		texturePath = parameters.attribute("p.Jump").as_string();
 
-		for (jumpTime; jumpTime >= 0;jumpTime--) {
+			for (jumpTime; jumpTime >= 0; jumpTime--) {
 
-		vel.y = b2Max(-10 - 0.1f, -5.0f);
+				vel.y = b2Max(-10 - 0.1f, -5.0f);
 
-		}
-		if (jumpTime <= 0) {
-		jump = false;
-		jumpTime = 600;
+			}
+			if (jumpTime <= 0) {
+				jump = false;
+				jumpTime = 600;
+
+			}
 
 		}
 
-	}
-
-	else if (onFloor==true) 
-	{
-	//Sprite de Idle
-		
-		if (lastSprite != parameters.attribute("p.Idle").as_string())
+		else if (onFloor == true)
 		{
-			texturePath = parameters.attribute("p.Idle").as_string();
-			lastSprite = texturePath;
-			texture = app->tex->Load(texturePath);
-		}
+			//Sprite de Idle
 
-	}
-
-	//-------------------------GRAVEDAD CUANDO NO SALTAS
-	if (onFloor == false && jumpTime <= 0)
-	{
-		vel.y = b2Min(speed + 0.1f, 5.0f);
-	}
-
-
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-	{
-		//
-	}
-		
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT ) 
-	{
-		
-		if (onFloor == true)
-		{
-			
-		}
-		
-
-		if (onFloor==false) 
-		{
-			if (lastSprite != parameters.attribute("p.JumpL").as_string())
+			if (lastSprite != parameters.attribute("p.Idle").as_string())
 			{
-				texturePath = parameters.attribute("p.JumpL").as_string();
+				texturePath = parameters.attribute("p.Idle").as_string();
 				lastSprite = texturePath;
 				texture = app->tex->Load(texturePath);
 			}
-		}
-		
-		
-
-		vel.x = b2Max(-speed - 0.1f, -5.0f);
-	}
-
-	
-
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT )
-	{
-		
-
-		if (onFloor == true)
-		{
 
 		}
 
-
-		if (onFloor == false)
+		//-------------------------GRAVEDAD CUANDO NO SALTAS
+		if (onFloor == false && jumpTime <= 0)
 		{
-			if (lastSprite != parameters.attribute("p.JumpR").as_string())
+			vel.y = b2Min(speed + 0.1f, 5.0f);
+		}
+
+
+
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+
+			if (onFloor == false)
 			{
-				texturePath = parameters.attribute("p.JumpR").as_string();
-				lastSprite = texturePath;
-				texture = app->tex->Load(texturePath);
+				if (lastSprite != parameters.attribute("p.JumpL").as_string())
+				{
+					texturePath = parameters.attribute("p.JumpL").as_string();
+					lastSprite = texturePath;
+					texture = app->tex->Load(texturePath);
+				}
 			}
-		}
-		
 
-		vel.x = b2Min(speed + 0.1f, 5.0f);
+
+
+			vel.x = b2Max(-speed - 0.1f, -5.0f);
+		}
+
+
+
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+
+
+
+			if (onFloor == false)
+			{
+				if (lastSprite != parameters.attribute("p.JumpR").as_string())
+				{
+					texturePath = parameters.attribute("p.JumpR").as_string();
+					lastSprite = texturePath;
+					texture = app->tex->Load(texturePath);
+				}
+			}
+
+
+			vel.x = b2Min(speed + 0.1f, 5.0f);
+		}
+
+		vel.x *= 0.88;
+
+
 	}
 
-	vel.x *= 0.88;
-
-	//Set the velocity of the pbody of the player
 	pbody->body->SetLinearVelocity(vel);
+	//Set the velocity of the pbody of the player
 	//Update player position in pixels
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
@@ -213,16 +249,16 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::ITEM:
 			LOG("Collision ITEM");
 			//------------------------------------Posible forma para destruir entidades
-			
 			//item->isPicked = true;
-
 			//app->entityManager->DestroyEntity();
 			break;
+
 		//-----------------------------SUELO
 		case ColliderType::PLATFORM:
 			onFloor = true;
 			LOG("Collision PLATFORM");
 			break;
+
 		//-----------------------------CAMBIO DE POSCION DE CAMARA 
 		case ColliderType::CHANGECAMERA:
 			//app->render->camera.x = -position.x-60;
@@ -235,12 +271,13 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 			LOG("Collision WIN");
 			break;
 
+	   //------------------------PERDER
 		case ColliderType::DIE:
-			
+			if (godMod == false)
+			{
 			die = true;
+			}
 			LOG("Collision DIE");
-			//------------------------------------Posible forma para destruir entidades
-			
 			break;
 	}
 	

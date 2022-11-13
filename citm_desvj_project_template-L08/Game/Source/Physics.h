@@ -82,7 +82,7 @@ public:
 private:
 
 	// Debug mode
-	bool debug = false;
+	bool debug = true;
 
 	// Box2D World
 	b2World* world;

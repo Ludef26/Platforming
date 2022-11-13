@@ -50,6 +50,8 @@ public:
 	bool jump = false;
 
 	bool die=false;
+
+	bool godMod = false;
 	
 };
 
