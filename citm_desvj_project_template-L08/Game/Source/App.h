@@ -21,7 +21,6 @@ class Map;
 //L07 DONE 2: Add Physics module
 class Physics;
 class Player;
-class Lose;
 
 class App
 {
@@ -93,7 +92,6 @@ public:
 	Map* map;
 	//L07 DONE 2: Add Physics module
 	Physics* physics;
-	Lose* lose;
 
 
 private:

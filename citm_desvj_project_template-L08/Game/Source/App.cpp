@@ -9,7 +9,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "Player.h"
-#include "Lose.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -32,7 +32,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	entityManager = new EntityManager();
 	map = new Map();
-	lose = new Lose();
+
 
 
 	// Ordered for awake / Start / Update
@@ -47,7 +47,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(entityManager);
 	AddModule(map);
-	AddModule(lose);
 
 	// Render last to swap buffer
 	AddModule(render);
