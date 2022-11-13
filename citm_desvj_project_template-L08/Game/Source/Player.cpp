@@ -70,14 +70,14 @@ bool Player::Update()
 	int speed = 5;
 	
 	//PARA IR AL PRINCIPIO
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 	{
 		pbody->body->SetTransform(b2Vec2(4, 13), 0);
 	}
 		
 
 	//PARA IR AL FINAL
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN)
 	{
 		pbody->body->SetTransform(b2Vec2(35, 13), 0);
 	}
