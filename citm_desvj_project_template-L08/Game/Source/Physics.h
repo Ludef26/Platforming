@@ -29,6 +29,7 @@ enum class ColliderType {
 	PLATFORM,
 	CHANGECAMERA,
 	WIN,
+	DIE,
 	UNKNOWN,
 	// ..
 };

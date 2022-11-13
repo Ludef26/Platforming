@@ -186,9 +186,13 @@ bool Player::Update()
 	app->render->DrawTexture(texture, position.x, position.y);
 
 	//--------------------------------Posicion Camara
-	app->render->camera.y = -position.y;
+	app->render->camera.y = -position.y-200;
 	app->render->camera.x = 400 - position.x * 2.0f;
 
+	if (die == true) {
+		pbody->body->SetTransform(b2Vec2(4,13),0);
+		die = false;
+	}
 	
 	return true;
 }
@@ -229,6 +233,14 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		case ColliderType::WIN:
 		
 			LOG("Collision WIN");
+			break;
+
+		case ColliderType::DIE:
+			
+			die = true;
+			LOG("Collision DIE");
+			//------------------------------------Posible forma para destruir entidades
+			
 			break;
 	}
 	

@@ -195,62 +195,72 @@ bool Map::Load()
     }
 
   
-
-    
+    //Pared 1
+    PhysBody* pared1 = app->physics->CreateRectangle(1040, 640, 32, 128, STATIC);
+    // L07 DONE 7: Assign collider type
+    pared1->ctype = ColliderType::PLATFORM;
     
    //------------------------------------ESCENARIO (No consiguo que use lso tiles para las hitbox)
     //Plataforma 1
-    PhysBody* c1 = app->physics->CreateRectangle(256+145, 608, 288, 64, STATIC);
+    PhysBody* plat1 = app->physics->CreateRectangle(256+145, 608, 288, 64, STATIC);
     // L07 DONE 7: Assign collider type
-    c1->ctype = ColliderType::PLATFORM;
+    plat1->ctype = ColliderType::PLATFORM;
 
     //Plataforma 2
-    PhysBody* c2 = app->physics->CreateRectangle(785,576, 288, 64, STATIC);
+    PhysBody* plat2 = app->physics->CreateRectangle(882,560, 96, 32, STATIC);
     // L07 DONE 7: Assign collider type
-    c2->ctype = ColliderType::PLATFORM;
+    plat2->ctype = ColliderType::PLATFORM;
 
     //Plataforma 3
-    PhysBody* c3 = app->physics->CreateRectangle(1185, 545, 384, 64, STATIC);
+    PhysBody* plat3 = app->physics->CreateRectangle(1250, 545, 257, 64, STATIC);
     // L07 DONE 7: Assign collider type
-    c3->ctype = ColliderType::PLATFORM;
+    plat3->ctype = ColliderType::PLATFORM;
 
     //Suelo
-    PhysBody* c4 = app->physics->CreateRectangle(256, 704 + 32, 5576, 64, STATIC);
+    PhysBody* floor1 = app->physics->CreateRectangle(190, 704 + 32, 125, 64, STATIC);
     // L07 DONE 7: Assign collider type
-    c4->ctype = ColliderType::PLATFORM;
+    floor1->ctype = ColliderType::PLATFORM;
 
     //Suelo
-    PhysBody* c5 = app->physics->CreateRectangle(95, 655, 64, 96, STATIC);
+    PhysBody* floor2 = app->physics->CreateRectangle(95, 655, 64, 96, STATIC);
     // L07 DONE 7: Assign collider type
-    c5->ctype = ColliderType::PLATFORM;
+    floor2->ctype = ColliderType::PLATFORM;
 
-    PhysBody* c6 = app->physics->CreateRectangle(752, 687, 224, 32, STATIC);
+    PhysBody* floor3 = app->physics->CreateRectangle(752, 687, 224, 32, STATIC);
     // L07 DONE 7: Assign collider type
-    c6->ctype = ColliderType::PLATFORM;
+    floor3->ctype = ColliderType::PLATFORM;
 
 
-    PhysBody* c7 = app->physics->CreateRectangle(1552, 687, 224, 32, STATIC);
+    PhysBody* floor4 = app->physics->CreateRectangle(1552, 687, 224, 32, STATIC);
     // L07 DONE 7: Assign collider type
-    c7->ctype = ColliderType::PLATFORM;
+    floor4->ctype = ColliderType::PLATFORM;
+
+
+    PhysBody* floor5 = app->physics->CreateRectangle(1750, 720, 624, 32, STATIC);
+    // L07 DONE 7: Assign collider type
+    floor5->ctype = ColliderType::PLATFORM;
+
 
     //LIMITE MAPA izquierda
-    PhysBody* c8 = app->physics->CreateRectangle(32, 687, 66, 1004, STATIC);
+    PhysBody* finL = app->physics->CreateRectangle(32, 687, 66, 1004, STATIC);
     // L07 DONE 7: Assign collider type
-    c8->ctype = ColliderType::PLATFORM;
+    finL->ctype = ColliderType::PLATFORM;
 
     //LIMITE MAPA Derecha
-    PhysBody* c9 = app->physics->CreateRectangle(2018, 78, 66, 1004, STATIC);
+    PhysBody* finR = app->physics->CreateRectangle(2018, 78, 66, 1004, STATIC);
     // L07 DONE 7: Assign collider type
-    c9->ctype = ColliderType::PLATFORM;
+    finR->ctype = ColliderType::PLATFORM;
 
-    PhysBody* c10 = app->physics->CreateRectangle(2000, 610, 94, 66,  STATIC);
+    PhysBody* finR2 = app->physics->CreateRectangle(2000, 610, 94, 66,  STATIC);
     // L07 DONE 7: Assign collider type
-    c10->ctype = ColliderType::PLATFORM;
+    finR2->ctype = ColliderType::PLATFORM;
 
 
     //-------------------------------------------------------------------------------
 
-
+    PhysBody* die = app->physics->CreateRectangle(190, 764 + 32, 4000, 64, STATIC);
+    // L07 DONE 7: Assign collider type
+    die->ctype = ColliderType::DIE;
 
     //------------------------------SENSOR PARA CAMBIAR LA CAMARA
    // PhysBody* cambio = app->physics->CreateRectangleSensor(1000, 675, 10, 16, bodyType::STATIC);

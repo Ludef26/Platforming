@@ -49,7 +49,7 @@ public:
 	int jumpTime=600;
 	bool jump = false;
 
-
+	bool die=false;
 	
 };
 
