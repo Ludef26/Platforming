@@ -121,7 +121,7 @@ bool Player::Update()
 		// L07 DONE 5: Add physics to the player - updated player position using physics
 
 		//L02: DONE 4: modify the position of the player using arrow keys and render the texture
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && onFloor == true) {
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && onFloor == true) {
 			//
 			if (lastSprite != parameters.attribute("p.Jump").as_string())
 			{
