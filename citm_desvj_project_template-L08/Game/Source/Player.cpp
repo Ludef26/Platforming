@@ -66,8 +66,8 @@ bool Player::Start() {
 bool Player::Update()
 {
 		
-	b2Vec2 vel = pbody->body->GetLinearVelocity();
-		int speed = 5;
+	b2Vec2 vel;
+	int speed = 5;
 	
 	//PARA IR AL PRINCIPIO
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
@@ -83,37 +83,39 @@ bool Player::Update()
 	}
 
 
+	//-------------------------GOD MODE-------------------------------------
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
 		godMod = !godMod;
 	}
 
-
 	if (godMod == true) {
-
+		vel.x = 0;
+		vel.y = 0;
 		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			vel.x = b2Max(-speed - 0.1f, -5.0f);
+			vel.x = -speed;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 		{
-			vel.x = b2Max(speed + 0.1f, +5.0f);
+			vel.x = speed;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
-			vel.y = b2Max(-speed - 0.1f, -5.0f);
+			vel.y = -speed;
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
-			vel.y = b2Max(-speed - 0.1f, -5.0f);
+			vel.y = speed;
 		}
 	}
 
+	//-----------------------------------------MODO NORMAL------------------------------ 
 	else {
-
+		 vel = pbody->body->GetLinearVelocity();
 
 
 		// L07 DONE 5: Add physics to the player - updated player position using physics
@@ -214,6 +216,7 @@ bool Player::Update()
 	}
 
 	pbody->body->SetLinearVelocity(vel);
+
 	//Set the velocity of the pbody of the player
 	//Update player position in pixels
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
