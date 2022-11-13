@@ -194,9 +194,9 @@ bool Map::Load()
         ret = LoadAllLayers(mapFileXML.child("map"));
     }
 
+  
 
-
-
+    
     
    //------------------------------------ESCENARIO (No consiguo que use lso tiles para las hitbox)
     //Plataforma 1

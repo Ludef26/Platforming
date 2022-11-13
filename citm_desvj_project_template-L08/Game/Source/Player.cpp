@@ -5,7 +5,6 @@
 #include "Input.h"
 #include "Render.h"
 #include "Scene.h"
-#include "Log.h"
 #include "Point.h"
 #include "Physics.h"
 #include "Item.h"
@@ -13,6 +12,10 @@
 #include "EntityManager.h"
 #include "Window.h"
 #include "Entity.h"
+
+
+#include "Log.h"
+
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -47,7 +50,7 @@ bool Player::Start() {
 	
 	pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 16,20, bodyType::DYNAMIC);
 	pbody->body->SetFixedRotation(true); // Asi no rota la hit box del jugador
-
+	
 	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
 	pbody->listener = this; 
 
@@ -185,7 +188,7 @@ bool Player::Update()
 	//--------------------------------Posicion Camara
 	app->render->camera.y = -position.y;
 	app->render->camera.x = 400 - position.x * 2.0f;
-	
+
 	
 	return true;
 }
@@ -224,8 +227,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 		//-----------------------------GANAR
 		case ColliderType::WIN:
-			
-			
+		
 			LOG("Collision WIN");
 			break;
 	}

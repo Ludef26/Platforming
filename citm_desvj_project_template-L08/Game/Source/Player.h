@@ -49,6 +49,8 @@ public:
 	int jumpTime=600;
 	bool jump = false;
 
+
+	
 };
 
 #endif // __PLAYER_H__
