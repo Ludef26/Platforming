@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<save_state>
+	<input />
+	<window />
+	<textures />
+	<audio />
+	<:anonymous />
+	<pathfinding />
+	<scene />
+	<entitymanager />
+	<map />
+	<renderer>
+		<camera x="-90" y="-879" />
+	</renderer>
+</save_state>
