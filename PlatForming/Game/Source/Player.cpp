@@ -271,6 +271,7 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		if (godMod == false)
 		{
 			die = true;
+			app->scene->enemyFy->die = true;
 		}
 		LOG("Collision DIE");
 		break;

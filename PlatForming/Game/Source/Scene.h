@@ -43,6 +43,7 @@ public:
 	bool showPath;
 
 private:
+	bool debugpath;
 	SDL_Texture* img;
 	SDL_Texture* mouseTileTex = nullptr;
 	SDL_Texture* originTex = nullptr;

@@ -32,7 +32,7 @@ bool Enemy::Awake() {
 
 bool Enemy::Start() {
 
-
+	stopEnem = false;
 	texture = app->tex->Load(texturePath);
 
 	pbody = app->physics->CreateRectangle(position.x+15, position.y+10, 15, 15, bodyType::DYNAMIC);
@@ -54,8 +54,12 @@ bool Enemy::Update()
 	float speed = 1.0f;
 	b2Vec2 vel = b2Vec2(0, -0.168f);
 
-	//ir.x = position.x - rutax[i];
-	//ir.y = position.y - rutay[i];
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+		stopEnem = !stopEnem;
+
+
+	if (stopEnem ==false) {
+
 	for (int i = 0; i < 100; i++)
 	{
 		
@@ -78,10 +82,10 @@ bool Enemy::Update()
 			vel = b2Vec2(0, speed);
 		}
 
-			pbody->body->SetLinearVelocity(vel);
 		
 		
 	}
+	 pbody->body->SetLinearVelocity(vel);
 	
 	if (die == true) {
 		pbody->body->SetTransform(b2Vec2(8,10), 0);
@@ -89,6 +93,7 @@ bool Enemy::Update()
 		die = false;
 	}
 	
+	}
 
 
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;

@@ -53,6 +53,7 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	debugpath = false;
 	//img = app->tex->Load("Assets/Textures/test.png");
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 	
@@ -147,7 +148,8 @@ bool Scene::Update(float dt)
 	app->pathfinding->CreatePath(origin, destino);
 
 	
-
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		debugpath = !debugpath;
 	
 	//-----------------------------------------------------------------
 
@@ -160,7 +162,7 @@ bool Scene::Update(float dt)
 		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 
 		
-		if (app->physics->debug)
+		if (debugpath)
 		{
 		app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
 		}
