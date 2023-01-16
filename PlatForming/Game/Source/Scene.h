@@ -46,6 +46,7 @@ public:
 	SDL_Texture* mama = NULL;
 	SDL_Rect rect;
 	//---------------------------------------------------------
+
 private:
 	bool debugpath;
 	SDL_Texture* img;
