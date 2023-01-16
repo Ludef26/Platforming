@@ -3,7 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
-#include "Combat_Entities.h"
+
 
 #define NUM_PAUSE_BUTTONS 4
 #define NUM_MENU_BUTTONS 6
@@ -118,9 +118,7 @@ public:
 
 	void DisableAll();
 
-	//Descriptions
-	void DisplayEntityInfo(Combat_Entities* entity);
-	void DisplaySkillInfo(Skill skill);
+	
 
 	// unlock object animation
 	bool object_obtained = false;

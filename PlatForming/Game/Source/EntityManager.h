@@ -9,7 +9,7 @@ class EntityManager : public Module
 {
 public:
 
-	EntityManager();
+	EntityManager(bool enabled);
 
 	// Destructor
 	virtual ~EntityManager();

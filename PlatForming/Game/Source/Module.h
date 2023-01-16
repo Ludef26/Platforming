@@ -12,7 +12,7 @@ class Module
 {
 public:
 
-	Module() : active(false)
+	Module(bool enabled) : active(enabled)
 	{}
 
 	void Init()
@@ -71,6 +71,26 @@ public:
 	{
 
 	}
+
+	void Enable()
+	{
+		if (!active)
+		{
+			active = true;
+			Start();
+		}
+	}
+
+	void Disable()
+	{
+		if (active)
+		{
+			active = false;
+			CleanUp();
+		}
+	}
+	inline bool Enabled() const { return active; }
+	inline bool Disabled() const { return !active; }
 
 public:
 

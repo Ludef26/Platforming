@@ -18,7 +18,7 @@
 #pragma comment( lib, "../Game/Source/External/Box2D/libx86/ReleaseLib/Box2D.lib" )
 #endif
 
-Physics::Physics() : Module()
+Physics::Physics(bool enabled) : Module(enabled)
 {
 	// Initialise all the internal class variables, at least to NULL pointer
 	world = NULL;
@@ -95,7 +95,7 @@ PhysBody* Physics::CreateRectangle(int x, int y, int width, int height, bodyType
 
 	b->CreateFixture(&fixture);
 
-	PhysBody* pbody = new PhysBody();
+	PhysBody* pbody = new PhysBody(true);
 	pbody->body = b;
 	b->SetUserData(pbody);
 	pbody->width = width * 0.5f;
@@ -132,7 +132,7 @@ PhysBody* Physics::CreateCircle(int x, int y, int radious, bodyType type)
 	b->CreateFixture(&fixture);
 
 	// Create our custom PhysBody class
-	PhysBody* pbody = new PhysBody();
+	PhysBody* pbody = new PhysBody(true);
 	pbody->body = b;
 	b->SetUserData(pbody);
 	pbody->width = radious * 0.5f;
@@ -168,7 +168,7 @@ PhysBody* Physics::CreateRectangleSensor(int x, int y, int width, int height, bo
 	b->CreateFixture(&fixture);
 
 	// Create our custom PhysBody class
-	PhysBody* pbody = new PhysBody();
+	PhysBody* pbody = new PhysBody(true);
 	pbody->body = b;
 	b->SetUserData(pbody);
 	pbody->width = width;
@@ -211,7 +211,7 @@ PhysBody* Physics::CreateChain(int x, int y, int* points, int size, bodyType typ
 	delete p;
 
 	// Create our custom PhysBody class
-	PhysBody* pbody = new PhysBody();
+	PhysBody* pbody = new PhysBody(true);
 	pbody->body = b;
 	b->SetUserData(pbody);
 	pbody->width = pbody->height = 0;
