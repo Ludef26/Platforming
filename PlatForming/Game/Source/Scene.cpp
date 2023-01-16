@@ -59,7 +59,8 @@ bool Scene::Start()
 	
 	// L03: DONE: Load map
 	bool retLoad = app->map->Load();
-
+	
+	mama = app->tex->Load("Assets/Screens/Dying_scene.png");
 	// L12 Create walkability map
 	if (retLoad) {
 		int w, h;
@@ -100,6 +101,7 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	
 	return true;
 }
 
@@ -172,8 +174,10 @@ bool Scene::Update(float dt)
 
 	}
 	
-	
-
+	// -----------------------------------------------------textura de perder
+	rect = { 0, 0, 640, 640 };
+	app->render->DrawTexture(mama, 100 + (315 * 0), 450, &rect);
+	//-------------------------------------------------------
 	return true;
 }
 
