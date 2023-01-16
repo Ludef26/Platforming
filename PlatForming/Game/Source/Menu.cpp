@@ -98,6 +98,7 @@ bool Menu::Awake()
 // Called before the first frame
 bool Menu::Start()
 {
+	mama = app->tex->Load("Assets/Screens/Dying_scene.png");
 	if (this->Enabled() && !this->Disabled())
 	{
 		r = { 0, 0, 1280, 720 };
@@ -315,7 +316,7 @@ bool Menu::PreUpdate()
 	}
 	
 	
-
+	
 	
 	
 	
@@ -363,6 +364,10 @@ bool Menu::Update(float dt)
 	smook_big_fire_anim.Update();
 	space_boton_anim.Update();
 
+	// -----------------------------------------------------textura de perder
+	rect = { 0, 0, 640, 640 };
+	app->render->DrawTexture(mama, 100 + (315 * 0), 450, &rect);
+	//-------------------------------------------------------
 	return true;
 }
 

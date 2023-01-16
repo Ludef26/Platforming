@@ -83,6 +83,11 @@ public:
 
 public:
 
+	//---------------------Para textura de perder
+	SDL_Texture* mama = NULL;
+	SDL_Rect rect;
+	//---------------------------------------------------------
+
 	SDL_Rect r;
 	bool intro;
 	bool paused;

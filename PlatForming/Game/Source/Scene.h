@@ -42,10 +42,7 @@ public:
 	Enemy* enemyFo;
 	bool showPath;
 
-	//---------------------Para textura de perder
-	SDL_Texture* mama = NULL;
-	SDL_Rect rect;
-	//---------------------------------------------------------
+	
 
 private:
 	bool debugpath;
