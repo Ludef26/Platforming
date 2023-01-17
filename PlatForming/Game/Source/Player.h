@@ -48,6 +48,7 @@ public:
 	bool jump = false;
 
 	bool die = false;
+	int vidas = 3;
 
 	bool godMod = false;
 };

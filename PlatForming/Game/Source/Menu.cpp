@@ -20,7 +20,7 @@ Menu::Menu(bool enabled) : Module(enabled)
 
 	torch_selection_anim.PushBack({ 0,0,33,49 });
 	torch_selection_anim.PushBack({ 35,0,33,49 });
-	torch_selection_anim.PushBack({ 70,0,33,49 });
+	torch_selection_anim.PushBack({ 70,0,33,49 }); 
 	torch_selection_anim.speed = 0.1f;
 	torch_selection_anim.loop = true;
 
@@ -98,7 +98,8 @@ bool Menu::Awake()
 // Called before the first frame
 bool Menu::Start()
 {
-	mama = app->tex->Load("Assets/Screens/Dying_scene.png");
+	
+
 	if (this->Enabled() && !this->Disabled())
 	{
 		r = { 0, 0, 1280, 720 };
@@ -315,17 +316,6 @@ bool Menu::PreUpdate()
 		hover_playing = false;
 	}
 	
-	
-	
-	
-	
-	
-
-
-	
-	
-
-
 
 
 	if (intro && (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || app->input->GetKey(SDL_SCANCODE_X) == KEY_UP))
@@ -364,10 +354,7 @@ bool Menu::Update(float dt)
 	smook_big_fire_anim.Update();
 	space_boton_anim.Update();
 
-	// -----------------------------------------------------textura de perder
-	rect = { 0, 0, 640, 640 };
-	app->render->DrawTexture(mama, 100 + (315 * 0), 450, &rect);
-	//-------------------------------------------------------
+	
 	return true;
 }
 

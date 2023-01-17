@@ -220,6 +220,7 @@ bool Player::Update()
 
 	if (die == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0);
+		vidas--;
 		die = false;
 	}
 

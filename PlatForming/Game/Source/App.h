@@ -24,6 +24,7 @@ class Map;
 class Physics;
 class PathFinding;
 class Menu;
+class HUD;
 
 
 class App
@@ -98,6 +99,7 @@ public:
 	Physics* physics;
 	PathFinding* pathfinding;
 	Menu* menu;
+	HUD* hud;
 
 
 private:

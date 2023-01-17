@@ -10,6 +10,7 @@
 #include "Physics.h"
 #include "Pathfinding.h"
 #include "Menu.h"
+#include "HUD.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -36,6 +37,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	entityManager = new EntityManager(true);
 	map = new Map(true);
 	menu = new Menu(true);
+	hud = new HUD(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -50,6 +52,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entityManager);
 	AddModule(map);
 	AddModule(menu);
+	AddModule(hud);
 
 
 	// Render last to swap buffer
