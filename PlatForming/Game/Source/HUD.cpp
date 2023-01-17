@@ -35,7 +35,7 @@ bool HUD::Start()
 {
 	VidaJugador = app->tex->Load("Assets/Textures/VidaJugador.png");
 
-	Perder = app->tex->Load("Assets/Scene/Dying_Scene.png");
+	Perder = app->tex->Load("Assets/Screens/Dying_scene.png");
 	return true;
 }
 
@@ -49,6 +49,7 @@ bool HUD::PreUpdate()
 // Called each loop iteration
 bool HUD::Update(float dt)
 {
+	rectPerder = { 0, 0, 1280,720 };
 	// -----------------------------------------------------Vida Jugador
 	rect = { 0, 0, 24,24 };
 
@@ -72,7 +73,7 @@ bool HUD::Update(float dt)
 	}
 
 	else
-	app->render->DrawTexture(VidaJugador, 0, 0 , &rectPerder);
+	app->render->DrawTexture(Perder, 0, 0 , &rectPerder);
 
 	//-------------------------------------------------------
 	
