@@ -68,6 +68,7 @@ bool Player::Update()
 			app->menu->Enable();
 			app->menu->abrirMenu = true;
 			app->menu->posicionSlime = 0;
+			app->menu->numMenu = 0;
 
 
 		}
