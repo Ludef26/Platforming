@@ -8,6 +8,8 @@
 #include "Log.h"
 #include "Point.h"
 #include "Physics.h"
+#include "Menu.h"
+#include "HUD.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -55,11 +57,33 @@ bool Player::Start() {
 
 bool Player::Update()
 {
-
 	b2Vec2 vel;
 	int speed = 5;
 
-	if (vidas > 0)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	{
+		if (app->menu->abrirMenu == false) 
+		{
+			
+			app->menu->Enable();
+			app->menu->abrirMenu = true;
+			app->menu->posicionSlime = 0;
+
+
+		}
+
+		else if (app->menu->abrirMenu == true) 
+		{
+			app->scene->enemyFy->stopEnem = false;
+			app->menu->Disable();
+			app->scene->player->godMod = false;
+			app->menu->abrirMenu = false;
+		}
+
+	}
+	
+
+	if (vidas > 0 && win==false && app->menu->abrirMenu==false)
 	{
 		//PARA IR AL PRINCIPIO
 		if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
@@ -217,20 +241,16 @@ bool Player::Update()
 		app->render->DrawTexture(texture, position.x, position.y);
 
 		//--------------------------------Posicion Camara
-		app->render->camera.y = -position.y - 200;
+		
 		app->render->camera.x = 400 - position.x * 2.0f;
 
 	}
 
-	if (vidas <= 0)
-	{
-		app->render->camera.y = -300;
-		app->render->camera.x = -650;
-	}
 
 	if (app->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
 		vidas = 3;
+		win = false;
 	}
 
 	
@@ -240,6 +260,10 @@ bool Player::Update()
 		die = false;
 	}
 
+	if (win == true) {
+		pbody->body->SetTransform(b2Vec2(3, 13), 0);
+		app->scene->enemyFy->die = true;
+	}
 
 	return true;
 }
@@ -280,8 +304,9 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 		//-----------------------------GANAR
 	case ColliderType::WIN:
-
+		win = true;
 		LOG("Collision WIN");
+
 		break;
 
 		//------------------------PERDER

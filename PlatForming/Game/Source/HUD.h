@@ -40,6 +40,7 @@ public:
 	//---------------------------------------------------------
 
 	SDL_Texture* Perder = NULL;
+	SDL_Texture* Ganar = NULL;
 	SDL_Rect rectPerder;
 };
 

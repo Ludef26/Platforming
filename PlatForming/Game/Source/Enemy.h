@@ -44,8 +44,8 @@ public:
 
 	bool die = false;
 
-private:
 	bool stopEnem;
+private:
 
 };
 

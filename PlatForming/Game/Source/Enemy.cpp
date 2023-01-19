@@ -51,15 +51,18 @@ bool Enemy::Start() {
 bool Enemy::Update()
 {
 	
-	float speed = 1.0f;
-	b2Vec2 vel = b2Vec2(0, -0.168f);
+	float speed;
+	b2Vec2 vel;
 
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 		stopEnem = !stopEnem;
 
 
 	if (stopEnem ==false) {
-
+		
+		float speed = 1.0f;
+		b2Vec2 vel = b2Vec2(0, -0.168f);
+		
 	for (int i = 0; i < 100; i++)
 	{
 		
@@ -85,20 +88,26 @@ bool Enemy::Update()
 		
 		
 	}
-	 pbody->body->SetLinearVelocity(vel);
 	
-	if (die == true) {
+	  if (die == true) {
 		pbody->body->SetTransform(b2Vec2(8,10), 0);
 		
 		die = false;
-	}
+	  }
 	
+	  pbody->body->SetLinearVelocity(vel);
 	}
 
+	else {
+		vel.x = 0;
+		vel.y = -0.168f;
+	 pbody->body->SetLinearVelocity(vel);
+	}
 
+	
+	
 	position.x = METERS_TO_PIXELS(pbody->body->GetTransform().p.x) - 16;
 	position.y = METERS_TO_PIXELS(pbody->body->GetTransform().p.y) - 16;
-	
 
 	app->render->DrawTexture(texture, position.x, position.y);
 

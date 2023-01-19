@@ -4,6 +4,7 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include "Scene.h"
 
 #define VSYNC true
 
@@ -45,8 +46,8 @@ bool Render::Awake(pugi::xml_node& config)
 	{
 		camera.w = app->win->screenSurface->w;
 		camera.h = app->win->screenSurface->h;
-		camera.x = 0;
-		camera.y = 0;
+		camera.x = app->scene->player->position.x-50;
+		camera.y = app->scene->player->position.y-1453;
 	}
 
 	return ret;

@@ -23,8 +23,8 @@ class Map;
 //L07 DONE 2: Add Physics module
 class Physics;
 class PathFinding;
-class Menu;
 class HUD;
+class Menu;
 
 
 class App

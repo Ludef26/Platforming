@@ -9,6 +9,7 @@
 #include "Map.h"
 #include "PathFinding.h"
 #include "Physics.h"
+#include "Menu.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -183,8 +184,10 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (app->menu->salirJuego == true) {
+
 		ret = false;
+	}
 
 	return ret;
 }

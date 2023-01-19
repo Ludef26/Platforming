@@ -36,6 +36,7 @@ bool HUD::Start()
 	VidaJugador = app->tex->Load("Assets/Textures/VidaJugador.png");
 
 	Perder = app->tex->Load("Assets/Screens/Dying_scene.png");
+	Ganar = app->tex->Load("Assets/Screens/Win_scene.png");
 	return true;
 }
 
@@ -72,8 +73,15 @@ bool HUD::Update(float dt)
 
 	}
 
+	// pantalla de perder
 	else
-	app->render->DrawTexture(Perder, 0, 0 , &rectPerder);
+	app->render->DrawTexture(Perder, app->scene->player->position.x - 530, 210, &rectPerder);
+
+	//pantalla de ganar
+	if (app->scene->player->win == true) 
+	{
+		app->render->DrawTexture(Ganar, app->scene->player->position.x - 530, 210, &rectPerder);
+	}
 
 	//-------------------------------------------------------
 	
@@ -84,7 +92,6 @@ bool HUD::Update(float dt)
 // Called each loop iteration
 bool HUD::PostUpdate()
 {
-	
 
 	return true;
 }
@@ -93,6 +100,6 @@ bool HUD::PostUpdate()
 bool HUD::CleanUp()
 {
 	LOG("Freeing HUD");
-
+	
 	return true;
 }
