@@ -42,7 +42,8 @@ public:
 	Enemy* enemyFo;
 	bool showPath;
 
-	
+	SDL_Rect tamañoParadax;
+	SDL_Texture* paradax1 = NULL;
 
 private:
 	bool debugpath;

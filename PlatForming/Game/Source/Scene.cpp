@@ -54,6 +54,12 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+	//Sprite PARADAX
+	tamañoParadax = { 0,  0,2700,720 };
+	paradax1 = app->tex->Load("Assets/Textures/FondoParadax.png");
+	//------------------------------
+
+
 	debugpath = false;
 	//img = app->tex->Load("Assets/Textures/test.png");
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
@@ -109,6 +115,14 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
+	//----------------------------------------Fondo paradax
+	if (app->menu->abrirMenu == false)
+	{
+		app->render->DrawTexture(paradax1, app->render->camera.x/10, 100, &tamañoParadax);
+	}
+	//--------------------------------------------------
+
+
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();

@@ -5,6 +5,8 @@
 #include "Defs.h"
 #include "Log.h"
 #include "Scene.h"
+#include "Textures.h"
+#include "Menu.h"
 
 #define VSYNC true
 
@@ -57,8 +59,11 @@ bool Render::Awake(pugi::xml_node& config)
 bool Render::Start()
 {
 	LOG("render start");
+	
+
 	// back background
 	SDL_RenderGetViewport(renderer, &viewport);
+
 	return true;
 }
 
@@ -71,11 +76,13 @@ bool Render::PreUpdate()
 
 bool Render::Update(float dt)
 {
+	
 	return true;
 }
 
 bool Render::PostUpdate()
 {
+	
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
 	return true;
