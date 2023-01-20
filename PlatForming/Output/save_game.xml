@@ -9,9 +9,9 @@
 	<scene />
 	<entitymanager />
 	<map />
-	<menu />
 	<HUD />
+	<menu />
 	<renderer>
-		<camera x="100" y="-878" />
+		<camera x="-3216" y="-781" />
 	</renderer>
 </save_state>

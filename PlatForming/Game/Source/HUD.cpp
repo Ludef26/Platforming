@@ -10,6 +10,7 @@
 #include "PathFinding.h"
 #include "Physics.h"
 #include "HUD.h"
+#include "Menu.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -17,6 +18,10 @@
 HUD::HUD(bool enabled) : Module(enabled)
 {
 	name.Create("HUD");
+	colorBarra.r = 18;
+	colorBarra.g = 255;
+	colorBarra.b = 34;
+	colorBarra.a = 100;
 }
 
 // Destructor
@@ -42,6 +47,9 @@ bool HUD::Start()
 
 	Perder = app->tex->Load("Assets/Screens/Dying_scene.png");
 	Ganar = app->tex->Load("Assets/Screens/Win_scene.png");
+
+
+
 	return true;
 }
 
@@ -56,6 +64,8 @@ bool HUD::PreUpdate()
 bool HUD::Update(float dt)
 {
 	
+	
+
     tamanoHudMonedas = { 0, 0, 133,47 };
 	rectPerder = { 0, 0, 1280,720 };
 
@@ -134,9 +144,33 @@ bool HUD::Update(float dt)
 		app->render->DrawTexture(Ganar, app->scene->player->position.x - 530, 210, &rectPerder);
 	}
 
-	
+	//-------------------------------------Tiempo
+	lineaTiempo = { 300,0,tamañoTiempo/6,20 };
 
 	
+	if(app->menu->abrirMenu==false)
+	{
+
+		if (tiempoActivo == true) {
+			
+			colorBarra.r += 1000 / tamañoTiempo;
+			colorBarra.g -= 500 / tamañoTiempo;
+
+			
+
+
+			tamañoTiempo -= 1;
+			SDL_SetRenderDrawColor(app->render->renderer, colorBarra.r, colorBarra.g, colorBarra.b, colorBarra.a);
+			SDL_RenderFillRect(app->render->renderer, &lineaTiempo);
+			if (tamañoTiempo <= 0)
+			{
+				tiempoActivo = false;
+			}
+		}
+
+	}
+	
+	//--------------------------------------------
 	return true;
 }
 

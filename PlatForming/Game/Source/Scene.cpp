@@ -55,7 +55,7 @@ bool Scene::Awake(pugi::xml_node& config)
 bool Scene::Start()
 {
 	//Sprite PARADAX
-	tamañoParadax = { 0,  0,2700,720 };
+	tamañoParadax = { 0,  0,3700,720 };
 	paradax1 = app->tex->Load("Assets/Textures/FondoParadax.png");
 	//------------------------------
 
@@ -118,7 +118,7 @@ bool Scene::Update(float dt)
 	//----------------------------------------Fondo paradax
 	if (app->menu->abrirMenu == false)
 	{
-		app->render->DrawTexture(paradax1, app->render->camera.x/10, 100, &tamañoParadax);
+		app->render->DrawTexture(paradax1, app->render->camera.x/10-100, 150, &tamañoParadax);
 	}
 	//--------------------------------------------------
 

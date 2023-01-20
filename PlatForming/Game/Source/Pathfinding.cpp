@@ -175,7 +175,7 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
-	int ret = -1;
+    ret = -1;
 	int iterations = 0;
 
 	// L12: TODO 1: if origin or destination are not walkable, return -1

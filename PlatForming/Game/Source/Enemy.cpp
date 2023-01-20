@@ -54,11 +54,12 @@ bool Enemy::Update()
 	float speed;
 	b2Vec2 vel;
 
-	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	//si esta a mas de 15 tiles deja de seguir
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN || app->pathfinding->ret <= 15)
 		stopEnem = !stopEnem;
 
 
-	if (stopEnem ==false) {
+	if (stopEnem ==false ) {
 		
 		float speed = 1.0f;
 		b2Vec2 vel = b2Vec2(0, -0.168f);

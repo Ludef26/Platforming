@@ -48,6 +48,11 @@ public:
 
 	SDL_Rect rect;
 	//---------------------------------------------------------
+	SDL_Rect lineaTiempo;
+	bool tiempoActivo = true;
+	int tamañoTiempo=2000;
+	SDL_Color colorBarra;
+
 
 	SDL_Texture* Perder = NULL;
 	SDL_Texture* Ganar = NULL;
