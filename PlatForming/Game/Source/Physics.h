@@ -24,13 +24,14 @@ enum bodyType {
 };
 
 enum class ColliderType {
-	PLAYER, 
+	PLAYER,
 	ENEMY,
 	ITEM,
 	PLATFORM,
 	CHANGECAMERA,
 	WIN,
 	DIE,
+	MASVIDA,
 	UNKNOWN
 	// ..
 };
@@ -84,10 +85,11 @@ public:
 public:
 
 	bool debug;
+	// Box2D World
+	b2World* world;
 private:
 
 	// Debug mode
 
-	// Box2D World
-	b2World* world;
+	
 };

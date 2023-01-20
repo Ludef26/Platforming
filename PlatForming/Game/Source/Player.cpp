@@ -10,6 +10,7 @@
 #include "Physics.h"
 #include "Menu.h"
 #include "HUD.h"
+#include "Map.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -258,11 +259,13 @@ bool Player::Update()
 	if (die == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0);
 		vidas--;
+		app->hud->cantidadMonedas = 0;
 		die = false;
 	}
 
 	if (win == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0);
+		app->hud->cantidadMonedas = 0;
 		app->scene->enemyFy->die = true;
 	}
 
@@ -286,6 +289,8 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		//-----------------------------MONEDAS
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
+		if(app->hud->cantidadMonedas<=4)
+		app->hud->cantidadMonedas++;
 		//------------------------------------Posible forma para destruir entidades
 		//item->attr.set_value(true);
 		//app->entityManager->DestroyEntity();
@@ -327,7 +332,16 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		}
 		LOG("Collision DIE");
 		break;
+
+
+	case ColliderType::MASVIDA:
+
+		vidas++;
+		//app->map->nocura = true;
+		LOG("Collision MAS VIDA");
+		break;
 	}
 
+	
 
 }

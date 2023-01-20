@@ -35,7 +35,17 @@ public:
 
 public:
 	//---------------------Para textura de perder
-	SDL_Texture* VidaJugador = NULL;
+	SDL_Texture* VidaJugador1 = NULL;
+	SDL_Texture* VidaJugador2 = NULL;
+	SDL_Texture* VidaJugador3 = NULL;
+
+	SDL_Texture* HudMonedas = NULL;
+	SDL_Texture* MonedasJugador = NULL;
+	bool ganarMoneda=false;
+	int posicionMoneda = 0;
+	int cantidadMonedas = 0;
+	SDL_Rect tamanoHudMonedas;
+
 	SDL_Rect rect;
 	//---------------------------------------------------------
 

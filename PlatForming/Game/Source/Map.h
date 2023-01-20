@@ -183,6 +183,8 @@ public:
 
 	PhysBody* meta; //Sensor de ganar
 
+	PhysBody* cura; //Sensor cura
+	bool nocura = false;
 private:
 
     SString mapFileName;
