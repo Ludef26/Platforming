@@ -65,6 +65,8 @@ bool HUD::Update(float dt)
 {
 	
 	
+	
+
 
     tamanoHudMonedas = { 0, 0, 133,47 };
 	rectPerder = { 0, 0, 1280,720 };
@@ -144,33 +146,34 @@ bool HUD::Update(float dt)
 		app->render->DrawTexture(Ganar, app->scene->player->position.x - 530, 210, &rectPerder);
 	}
 
-	//-------------------------------------Tiempo
-	lineaTiempo = { 300,0,tamañoTiempo/6,20 };
 
-	
-	if(app->menu->abrirMenu==false)
+	//-------------------------------------Tiempo
+	lineaTiempo = { 300,0,tamañoTiempo / 6,20 };
+
+
+	if (app->menu->abrirMenu == false && app->scene->player->win == false && app->scene->player->vidas > 0)
 	{
 
 		if (tiempoActivo == true) {
-			
+
 			colorBarra.r += 1000 / tamañoTiempo;
 			colorBarra.g -= 500 / tamañoTiempo;
-
-			
-
 
 			tamañoTiempo -= 1;
 			SDL_SetRenderDrawColor(app->render->renderer, colorBarra.r, colorBarra.g, colorBarra.b, colorBarra.a);
 			SDL_RenderFillRect(app->render->renderer, &lineaTiempo);
+
 			if (tamañoTiempo <= 0)
 			{
 				tiempoActivo = false;
+				app->scene->player->die = true;
 			}
 		}
 
 	}
-	
+
 	//--------------------------------------------
+
 	return true;
 }
 

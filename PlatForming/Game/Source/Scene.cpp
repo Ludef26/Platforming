@@ -176,16 +176,21 @@ bool Scene::Update(float dt)
 	const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
 	for (uint i = 0; i < path->Count(); ++i)
 	{
-		iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-
 		
-		if (debugpath)
-		{
-		app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-		}
 
-		app->scene->enemyFy->rutax[i] = pos.x;
-		app->scene->enemyFy->rutay[i] = pos.y;
+		if (app->scene->enemyFy->stopEnem == false) {
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+
+
+			if (debugpath)
+			{
+				app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+			}
+
+			app->scene->enemyFy->rutax[i] = pos.x;
+			app->scene->enemyFy->rutay[i] = pos.y;
+		}
+		
 
 	}
 	

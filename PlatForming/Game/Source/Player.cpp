@@ -260,13 +260,17 @@ bool Player::Update()
 		pbody->body->SetTransform(b2Vec2(3, 13), 0);
 		vidas--;
 		app->hud->cantidadMonedas = 0;
+		app->hud->tamañoTiempo = 2000;
 		die = false;
+		app->scene->enemyFy->die = true;
 	}
 
 	if (win == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0);
 		app->hud->cantidadMonedas = 0;
 		app->scene->enemyFy->die = true;
+		app->hud->tamañoTiempo = 2000;
+
 	}
 
 	return true;
