@@ -50,13 +50,23 @@ public:
 	//---------------------------------------------------------
 	SDL_Rect lineaTiempo;
 	bool tiempoActivo = true;
-	int tamañoTiempo=2000;
+	int cantidadTiempo=2000;
+	int tamañoTiempo=cantidadTiempo;
 	SDL_Color colorBarra;
 
 
 	SDL_Texture* Perder = NULL;
 	SDL_Texture* Ganar = NULL;
 	SDL_Rect rectPerder;
+
+	//---------Sprite y posicion cura jugador
+	int posicionCurax = 700;
+	int posicionCuray = 600;
+	SDL_Texture* curaJugador = NULL;
+	SDL_Rect rectCura;
+	//--------------
+
+
 };
 
 #endif // __SCENE_H__

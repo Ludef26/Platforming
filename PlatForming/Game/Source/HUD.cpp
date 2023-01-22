@@ -48,6 +48,7 @@ bool HUD::Start()
 	Perder = app->tex->Load("Assets/Screens/Dying_scene.png");
 	Ganar = app->tex->Load("Assets/Screens/Win_scene.png");
 
+	curaJugador = app->tex->Load("Assets/Textures/CurarJugador.png");
 
 
 	return true;
@@ -64,8 +65,13 @@ bool HUD::PreUpdate()
 bool HUD::Update(float dt)
 {
 	
-	
-	
+	//SPRITE CURA (Esta aqui porque sino no se imprime en MAP (no preguntes))
+	rectCura = { 0, 0, 32,32 };
+	if (app->map->nocura == true) 
+	{
+	app->render->DrawTexture(curaJugador, posicionCurax-15, posicionCuray-15, &rectCura);
+	}
+	//---------------------------
 
 
     tamanoHudMonedas = { 0, 0, 133,47 };
@@ -151,7 +157,7 @@ bool HUD::Update(float dt)
 	lineaTiempo = { 300,0,tamañoTiempo / 6,20 };
 
 
-	if (app->menu->abrirMenu == false && app->scene->player->win == false && app->scene->player->vidas > 0)
+	if (app->menu->abrirMenu == false && app->scene->player->win == false && app->scene->player->vidas > 0 && app->scene->player->godMod==false)
 	{
 
 		if (tiempoActivo == true) {

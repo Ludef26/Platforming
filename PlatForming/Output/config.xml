@@ -32,11 +32,11 @@
 	  <enemyFloor x="200" y="500" ef.Jump="Assets/Textures/enemyFly.png"/>
 	  
 
-	  <item x="256" y="515" texturepath="Assets/Textures/goldSlime.png" picked="false" />
-	  <item x="416" y="512" texturepath="Assets/Textures/goldSlime.png" picked="false"/>
-	  <item x="384" y="352" texturepath="Assets/Textures/goldSlime.png" picked="false"/>
-	  <item x="200" y="672" texturepath="Assets/Textures/goldSlime.png" picked="false"/>
-	  <item x="500" y="672" texturepath="Assets/Textures/goldSlime.png" picked="false"/>
+	  <item x="256" y="515" texturepath="Assets/Textures/goldSlime.png" picked="false" idItem="1"/>
+	  <item x="416" y="512" texturepath="Assets/Textures/goldSlime.png" picked="false" idItem="2"/>
+	  <item x="384" y="352" texturepath="Assets/Textures/goldSlime.png" picked="false" idItem="3"/>
+	  <item x="200" y="672" texturepath="Assets/Textures/goldSlime.png" picked="false" idItem="4"/>
+	  <item x="300" y="472" texturepath="Assets/Textures/goldSlime.png" picked="false" idItem="5"/>
   </scene>
 
   <map>

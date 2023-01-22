@@ -36,6 +36,8 @@ public:
 
 public:
 
+	Item* item;
+	pugi::xml_node itemNode;
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
 	Enemy* enemyFy;

@@ -6,6 +6,8 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include "Textures.h"
+#include "HUD.h"
 
 #include <math.h>
 #include "SDL_image/include/SDL_image.h"
@@ -13,6 +15,8 @@
 Map::Map(bool enabled) : Module(enabled), mapLoaded(false)
 {
     name.Create("map");
+    
+
 }
 
 // Destructor
@@ -24,9 +28,11 @@ bool Map::Awake(pugi::xml_node& config)
 {
     LOG("Loading Map Parser");
     bool ret = true;
-
+   
+   
     mapFileName = config.child("mapfile").attribute("path").as_string();
     mapFolder = config.child("mapfolder").attribute("path").as_string();
+
 
     return ret;
 }
@@ -251,6 +257,7 @@ bool Map::CleanUp()
 // Load new map
 bool Map::Load()
 {
+
     bool ret = true;
 
     //Load texture to show the path
@@ -352,14 +359,12 @@ bool Map::Load()
    // PhysBody* cambio = app->physics->CreateRectangleSensor(1000, 675, 10, 16, bodyType::STATIC);
     //cambio->ctype = ColliderType::CHANGECAMERA;
 
-    // Curar jugador
-   // if (nocura == false) 
-    //{
-    //cura = app->physics->CreateRectangleSensor(1000, 475, 10, 30, bodyType::STATIC);
-    //cura->ctype = ColliderType::MASVIDA;
-    //}
 
-    
+    //---------- Cura jugador Sensor
+    cura = app->physics->CreateRectangleSensor(app->hud->posicionCurax, app->hud->posicionCuray, 32, 32, bodyType::STATIC);
+    cura->ctype = ColliderType::MASVIDA;
+    //-----------
+
 
     //------------------------------PRIMERA META DEL JUGADOR
     meta = app->physics->CreateRectangleSensor(2000, 675, 10, 30, bodyType::STATIC);

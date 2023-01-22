@@ -11,6 +11,7 @@
 #include "Menu.h"
 #include "HUD.h"
 #include "Map.h"
+#include "EntityManager.h"
 
 Player::Player() : Entity(EntityType::PLAYER)
 {
@@ -60,6 +61,7 @@ bool Player::Update()
 {
 	b2Vec2 vel;
 	int speed = 5;
+
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 	{
@@ -257,21 +259,33 @@ bool Player::Update()
 
 	
 	if (die == true) {
-		pbody->body->SetTransform(b2Vec2(3, 13), 0);
+
+		pbody->body->SetTransform(b2Vec2(3, 13), 0); //MUEVE AL JUGADOR A LA POSICION INICIAL
 		vidas--;
-		app->hud->cantidadMonedas = 0;
-		app->hud->tamañoTiempo = 2000;
+		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
 		die = false;
 		app->scene->enemyFy->die = true;
 	}
-
+	//-----------GANAR------------
 	if (win == true) {
-		pbody->body->SetTransform(b2Vec2(3, 13), 0);
+		pbody->body->SetTransform(b2Vec2(3, 13), 0); //MUEVE AL JUGADOR A LA POSICION INICIAL
 		app->hud->cantidadMonedas = 0;
 		app->scene->enemyFy->die = true;
-		app->hud->tamañoTiempo = 2000;
+		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
+		app->map->cura->body->SetActive(true);
+		app->map->nocura = true;
 
 	}
+	//----------------------------
+
+	//-----------PERDER------------
+	if (vidas <= 0)
+	{
+		app->map->cura->body->SetActive(true);
+		app->map->nocura = true;
+		app->hud->cantidadMonedas = 0;
+	}
+	//----------------------------
 
 	return true;
 }
@@ -293,10 +307,23 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		//-----------------------------MONEDAS
 	case ColliderType::ITEM:
 		LOG("Collision ITEM");
+
+
+		//app->scene->item->active = false;
 		if(app->hud->cantidadMonedas<=4)
 		app->hud->cantidadMonedas++;
+
 		//------------------------------------Posible forma para destruir entidades
+		posi = app->scene->itemNode.attribute("x").as_int();
+		if (posi == position.x) {
+			elemi = true;
+		}
+		else
+			app->scene->itemNode.next_sibling();
 		//item->attr.set_value(true);
+
+
+
 		//app->entityManager->DestroyEntity();
 		break;
 
@@ -340,8 +367,11 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 
 	case ColliderType::MASVIDA:
 
+		if (vidas < 3) {
 		vidas++;
-		//app->map->nocura = true;
+		app->map->cura->body->SetActive(false);
+		app->map->nocura = false;
+		}
 		LOG("Collision MAS VIDA");
 		break;
 	}

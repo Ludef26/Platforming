@@ -25,6 +25,7 @@ public:
 public:
 
 	bool isPicked = false;
+	int idItem;
 	pugi::xml_attribute attr;
 
 private:

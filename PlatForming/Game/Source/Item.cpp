@@ -22,7 +22,7 @@ bool Item::Awake() {
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
 	isPicked = parameters.attribute("picked").as_bool();
-
+	idItem = parameters.attribute("idItem").as_int();
 	return true;
 }
 
@@ -44,7 +44,39 @@ bool Item::Start() {
 
 bool Item::Update()
 {
-	 attr = parameters.attribute("picked");
+	
+
+	switch (idItem) {
+	case 1:
+		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		{
+		parameters.append_attribute("picked") = true;
+		}
+		break;
+
+	case 2:
+		if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN)
+		{
+			parameters.append_attribute("picked") = true;
+		}
+		break;
+
+	case 3:
+		parameters.append_attribute("picked") = true;
+		break;
+
+	case 4:
+		parameters.append_attribute("picked") = true;
+		break;
+
+	case 5:
+		parameters.append_attribute("picked") = true;
+		break;
+
+	}
+	
+
+	
 
 	if (isPicked == false)
 	{
