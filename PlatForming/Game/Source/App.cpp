@@ -11,7 +11,6 @@
 #include "Pathfinding.h"
 #include "Menu.h"
 #include "HUD.h"
-#include "FadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -31,7 +30,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	render = new Render(true);
 	tex = new Textures(true);
 	audio = new Audio(true);
-	fadetoblack = new FadeToBlack(true);
 	//L07 DONE 2: Add Physics module
 	physics = new Physics(true);
 	pathfinding = new PathFinding(true);
@@ -48,7 +46,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	AddModule(fadetoblack);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
 	AddModule(pathfinding);
