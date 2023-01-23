@@ -26,6 +26,7 @@
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Menu.cpp" />
     <ClCompile Include="Source\HUD.cpp" />
+    <ClCompile Include="Source\FadeToBlack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -79,6 +80,7 @@
     <ClInclude Include="Source\Menu.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\HUD.h" />
+    <ClInclude Include="Source\FadeToBlack.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

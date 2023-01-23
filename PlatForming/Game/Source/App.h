@@ -25,6 +25,7 @@ class Physics;
 class PathFinding;
 class HUD;
 class Menu;
+class FadeToBlack;
 
 
 class App
@@ -95,11 +96,13 @@ public:
 	Scene* scene;
 	EntityManager* entityManager;
 	Map* map;
+	FadeToBlack* fadetoblack;
 	//L07 DONE 2: Add Physics module
 	Physics* physics;
 	PathFinding* pathfinding;
 	Menu* menu;
 	HUD* hud;
+	
 
 
 private:
