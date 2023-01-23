@@ -20,6 +20,7 @@ class Audio;
 class Scene;
 class EntityManager;
 class Map;
+class FadeToBlack;
 //L07 DONE 2: Add Physics module
 class Physics;
 class PathFinding;
@@ -96,6 +97,7 @@ public:
 	Scene* scene;
 	EntityManager* entityManager;
 	Map* map;
+	FadeToBlack* fadetoblack;
 	//L07 DONE 2: Add Physics module
 	Physics* physics;
 	PathFinding* pathfinding;

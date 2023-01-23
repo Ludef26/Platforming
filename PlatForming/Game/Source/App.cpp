@@ -11,6 +11,7 @@
 #include "Pathfinding.h"
 #include "Menu.h"
 #include "HUD.h"
+#include "FadeToBlack.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -38,6 +39,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map(true);
 	hud = new HUD(true);
 	menu = new Menu(true);
+	fadetoblack = new FadeToBlack(true);
 	
 
 	// Ordered for awake / Start / Update
@@ -46,6 +48,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(fadetoblack);
 	//L07 DONE 2: Add Physics module
 	AddModule(physics);
 	AddModule(pathfinding);
