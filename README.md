@@ -36,7 +36,6 @@ https://github.com/Ludef26/Platforming
 * (Hold A-B):To stick to the walls.
 * (Hold A/B + Space + A/B ):Jump from the wall.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This is a difficult mechanic but we think it adds something extra to the gameplay.
 
 
