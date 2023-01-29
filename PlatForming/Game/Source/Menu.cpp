@@ -290,7 +290,6 @@ bool Menu::PostUpdate()
 // Called before quitting
 bool Menu::CleanUp()
 {
-	app->menu->Disabled();
 	return true;
 }
 
