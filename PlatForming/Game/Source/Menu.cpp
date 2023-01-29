@@ -47,10 +47,12 @@ bool Menu::Start()
 	
 	FondoMenu = app->tex->Load("Assets/Screens/Menu.png");
 	SlimeMenu = app->tex->Load("Assets/Textures/SlimeMenu.png");
-	
+
 	FondoCreditos = app->tex->Load("Assets/Screens/Creditos.png");
 
 	FondoOpciones = app->tex->Load("Assets/Screens/Opciones.png");
+
+	app->audio->PlayMusic("Assets/Music/menu_music.ogg");
 
 	//-------------------Sprites botones
 	botonJugar = app->tex->Load("Assets/Textures/BotonJugar.png");
