@@ -358,10 +358,10 @@ bool Menu::Update(float dt)
 
 		if (activarVsync)
 		{
-			app->render->DrawTexture(botonVSYNC, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+			app->render->DrawTexture(botonVSYNCON, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
 		}
 		else
-			app->render->DrawTexture(botonVSYNCON, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+			app->render->DrawTexture(botonVSYNC, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
 
 
 
