@@ -2,12 +2,24 @@
 https://github.com/Ludef26/Platforming
 
 ## Updates
-(NEW)* New Debug Keys ( F1,F2).
-(NEW)* PathFinding System.
-(NEW)* Flying Enemy.
-(NEW)* When the player dies, the enemy returns to its initial position.
-(NEW)* Readme update.
-(NEW)* God Mode Adjustment
+
+* Menu 
+  * Play button
+  * Options button
+  * Credits button
+  * Quit button
+* Collectable coins & HUD
+* Timer level & HUD
+* Checkpoint with feedback
+* New sistem of lives & HUD
+* Item for recovery health
+* Menu pause 
+
+## ReImplemented 
+
+* Win/Lose Screen 
+* Background with parallax
+* Music gameplay
 
 ## TEAM MEMBERS
 
@@ -18,19 +30,21 @@ https://github.com/Ludef26/Platforming
 
 * (W-A-S-D): Player Movement
 * (SPACE): Jump
-(NEW)* (Hold A-B):To stick to the walls.
-(NEW)* (Hold A/B + Space + A/B ):Jump from the wall.
+* (ESCAPE): Menu
+
+## OTHER FEATURES
+* (Hold A-B):To stick to the walls.
+* (Hold A/B + Space + A/B ):Jump from the wall.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This is a difficult mechanic but we think it adds something extra to the gameplay.
 
 
 ## DEBUG FEATURES
-(NEW)* F1: view pathfind
-(NEW)* F2: Enemies stop following you
+* F1: view pathfind
+* F2: Enemies stop following you
 * F3: tp player to the start of the current level
 * F4: tp player to the end of the current level
-* F5: to complete
-* F6: to complete
+* F5: tp player to checkpoint
 * F9: view colliders
 * F10: god mode
 
