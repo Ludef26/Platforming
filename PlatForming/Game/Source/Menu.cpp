@@ -69,9 +69,15 @@ bool Menu::Start()
 	botonMusica = app->tex->Load("Assets/Textures/botonMusica.png");
 	botonFullScream = app->tex->Load("Assets/Textures/botonFullScream.png");
 	botonVSYNC = app->tex->Load("Assets/Textures/botonVSYNC.png");
-	botonSINASIGNAR = app->tex->Load("Assets/Textures/botonSINASIGNAR.png");
+	botonFX = app->tex->Load("Assets/Textures/botonFX.png");
 	botonSalirAjustes = app->tex->Load("Assets/Textures/botonSalirAjustes.png");
 	//-------------------------
+
+	//-------------------Sprites botones ON
+	botonMusicaON = app->tex->Load("Assets/Textures/botonMusicaOn.png");
+	botonFullScreamON = app->tex->Load("Assets/Textures/botonFullScreamOn.png");
+	botonVSYNCON = app->tex->Load("Assets/Textures/botonVSYNCOn.png");
+	botonFXON = app->tex->Load("Assets/Textures/botonFXOn.png");
 
 	app->scene->player->godMod = true;	
 	app->scene->enemyFy->stopEnem=true;
@@ -335,12 +341,48 @@ bool Menu::Update(float dt)
 		app->render->DrawTexture(FondoOpciones, posicionMenu.x - 200, posicionMenu.y, &rect);
 
 		//-------------------------------------botones menu
-		app->render->DrawTexture(botonMusica, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
-		app->render->DrawTexture(botonFullScream, posicionMenu.x + 40, posicionMenu.y + 99, &rectBoton);
-		app->render->DrawTexture(botonVSYNC, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
-		app->render->DrawTexture(botonSINASIGNAR, posicionMenu.x + 40, posicionMenu.y + 209, &rectBoton);
+		
+		
+		
+	
 		app->render->DrawTexture(botonSalirAjustes, posicionMenu.x + 40, posicionMenu.y + 264, &rectBoton);
 		//----------------------------------------
+
+		if (activarFullscream) 
+		{
+			app->render->DrawTexture(botonFullScreamON, posicionMenu.x + 40, posicionMenu.y + 99, &rectBoton);
+		}else
+			app->render->DrawTexture(botonFullScream, posicionMenu.x + 40, posicionMenu.y + 99, &rectBoton);
+
+
+
+		if (activarVsync)
+		{
+			app->render->DrawTexture(botonVSYNCON, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+		}
+		else
+			app->render->DrawTexture(botonVSYNC, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+
+
+
+		if (fx)
+		{
+			app->render->DrawTexture(botonFXON, posicionMenu.x + 40, posicionMenu.y + 209, &rectBoton);
+		}
+		else
+			app->render->DrawTexture(botonFX, posicionMenu.x + 40, posicionMenu.y + 209, &rectBoton);
+
+
+
+		if (musica)
+		{
+			app->render->DrawTexture(botonMusicaON, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
+		}
+		else
+			app->render->DrawTexture(botonMusica, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
+
+
+
 
 		app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y + 40 + posicionSlimeAjustes, &seleccionador);
 

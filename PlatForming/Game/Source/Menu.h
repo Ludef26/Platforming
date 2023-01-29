@@ -58,8 +58,15 @@ public:
 	SDL_Texture* botonMusica = NULL;
 	SDL_Texture* botonFullScream = NULL;
 	SDL_Texture* botonVSYNC = NULL;
-	SDL_Texture* botonSINASIGNAR = NULL;
+	SDL_Texture* botonFX = NULL;
 	SDL_Texture* botonSalirAjustes = NULL;
+
+
+	SDL_Texture* botonMusicaON = NULL;
+	SDL_Texture* botonFullScreamON = NULL;
+	SDL_Texture* botonVSYNCON = NULL;
+	SDL_Texture* botonFXON = NULL;
+
 
 	int posicionSlime = 0;
 
