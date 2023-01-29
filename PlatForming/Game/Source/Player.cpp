@@ -32,7 +32,7 @@ bool Player::Awake() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("p.idle").as_string();
-
+	
 	return true;
 }
 
@@ -52,6 +52,11 @@ bool Player::Start() {
 
 	//initialize audio effect - !! Path is hardcoded, should be loaded from config.xml
 	pickCoinFxId = app->audio->LoadFx("Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg");
+	//musica_fondo = app->audio->LoadFx("Assets/Audio/Music/menu_music.ogg");
+		//app->audio->PlayFx(musica_fondo);
+
+
+	
 
 	return true;
 }
@@ -60,8 +65,7 @@ bool Player::Update()
 {
 	b2Vec2 vel;
 	int speed = 5;
-
-
+	
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && app->menu->creditos == false && app->menu->menuOpciones == false)
 	{
 		if (app->menu->abrirMenu == false) 
@@ -81,6 +85,8 @@ bool Player::Update()
 			app->menu->Disable();
 			app->scene->player->godMod = false;
 			app->menu->abrirMenu = false;
+			app->menu->menuOpciones = false;
+			app->menu->creditos = false;
 		}
 
 	}
@@ -280,12 +286,13 @@ bool Player::Update()
 	//-----------GANAR------------
 	if (win == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0); //MUEVE AL JUGADOR A LA POSICION INICIAL
-		app->hud->cantidadMonedas = 0;
-		app->scene->enemyFy->die = true;
-		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
 		app->map->cura->body->SetActive(true);
 		app->map->checkpoint->body->SetActive(true);
 		app->map->nocura = true;
+		app->hud->cantidadMonedas = 0;
+		app->scene->enemyFy->die = true;
+		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
+		puntodeguardar = false;
 		app->map->adiosCheckpoint = true;
 
 	}
@@ -299,6 +306,7 @@ bool Player::Update()
 		app->map->checkpoint->body->SetActive(true);
 		app->map->nocura = true;
 		app->hud->cantidadMonedas = 0;
+		app->scene->enemyFy->die = true;
 		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
 		puntodeguardar = false;
 		app->map->adiosCheckpoint = true;

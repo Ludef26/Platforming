@@ -38,7 +38,10 @@ bool Menu::Awake()
 // Called before the first frame
 bool Menu::Start()
 {
-	
+
+	sonido_mover = app->audio->LoadFx("Assets/Audio/Fx/pop.wav");
+	sonido_clickar = app->audio->LoadFx("Assets/Audio/Fx/equip.wav");
+
 	rect = {  0,  0,1280,720 };
 
 	rectBoton = { 0,  0, 150,40 };
@@ -52,7 +55,7 @@ bool Menu::Start()
 
 	FondoOpciones = app->tex->Load("Assets/Screens/Opciones.png");
 
-	app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg", 1.0f);
+	
 
 	//-------------------Sprites botones
 	botonJugar = app->tex->Load("Assets/Textures/BotonJugar.png");
@@ -73,8 +76,10 @@ bool Menu::Start()
 	app->scene->player->godMod = true;	
 	app->scene->enemyFy->stopEnem=true;
 	
-
-	
+	if (musica == true)
+	{
+		app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg",0.0f);
+	}
 	return true;
 }
 
@@ -82,13 +87,15 @@ bool Menu::Start()
 bool Menu::PreUpdate()
 {
 	
-
+	
+	
 	return true;
 }
 
 // Called each loop iteration
 bool Menu::Update(float dt)
 {
+	
 	posicionMenu.x = app->scene->player->position.x;
 	posicionMenu.y = 390;
 
@@ -116,12 +123,20 @@ bool Menu::Update(float dt)
 			{
 					posicionSlime -= 55;
 					numMenu--;
+					if (fx) {
+
+					app->audio->PlayFx(sonido_mover);
+					}
 			}
 
 			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numMenu != 4)
 			{
 					posicionSlime += 55;
 					numMenu++;
+					if (fx) {
+
+					app->audio->PlayFx(sonido_mover);
+					}
 			}
 
 		}
@@ -133,6 +148,10 @@ bool Menu::Update(float dt)
 			case 0:
 				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 				{
+					if (fx) {
+
+					app->audio->PlayFx(sonido_clickar);
+					}
 					app->scene->enemyFy->stopEnem = false;
 					app->menu->Disable();
 					app->scene->player->godMod = false;
@@ -147,7 +166,10 @@ bool Menu::Update(float dt)
 			case 1:
 				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 				{
-		
+					if (fx) {
+					app->audio->PlayFx(sonido_clickar);
+
+					}
 				}
 				break;
 
@@ -155,6 +177,10 @@ bool Menu::Update(float dt)
 			case 2:
 				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 				{
+					if (fx) {
+
+					app->audio->PlayFx(sonido_clickar);
+					}
 					menuOpciones = true;
 				}
 				break;
@@ -163,6 +189,10 @@ bool Menu::Update(float dt)
 			case 3:
 				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 				{
+					if (fx) {
+
+					app->audio->PlayFx(sonido_clickar);
+					}
 					creditos = true;
 				}
 				break;
@@ -171,6 +201,10 @@ bool Menu::Update(float dt)
 			case 4:
 				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN )
 				{
+					if (fx) {
+
+					app->audio->PlayFx(sonido_clickar);
+					}
 					salirJuego = true;
 				}
 				break;
@@ -184,20 +218,32 @@ bool Menu::Update(float dt)
 
 	if (menuOpciones) 
 	{
-		
-		
+		esperarMenu--;
+		if (musica == false) {
+			app->audio->StopMusic(0.0f);
+		}
 
 		//eleccion menu
-		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numOpciones != 0)
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numOpciones != 0 && esperarMenu<=0)
 		{
 			posicionSlimeAjustes -= 55;
 			numOpciones--;
+
+			if (fx) {
+			app->audio->PlayFx(sonido_mover);
+
+			}
 		}
 
-		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numOpciones != 4)
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numOpciones != 4 && esperarMenu <= 0)
 		{
 			posicionSlimeAjustes += 55;
 			numOpciones++;
+
+			if (fx) {
+			app->audio->PlayFx(sonido_mover);
+
+			}
 		}
 
 
@@ -205,46 +251,86 @@ bool Menu::Update(float dt)
 
 			//BOTON MUSICA
 		case 0:
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && esperarMenu <= 0)
 			{
+				if (fx) {
+				app->audio->PlayFx(sonido_clickar);
+
+				}
+				musica = !musica;
 				
 			}
 			break;
 
 			// BOTON FULLSCREEN
 		case 1:
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && esperarMenu <= 0)
 			{
+				if (fx) {
+				app->audio->PlayFx(sonido_clickar);
+
+				}
 				activarFullscream = !activarFullscream;
+
 			}
 			break;
 
 			// BOTON VSYNC
 		case 2:
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && esperarMenu <= 0)
 			{
-				
+				if (fx) {
+				app->audio->PlayFx(sonido_clickar);
+
+				}
+				activarVsync = !activarVsync;
 			}
 			break;
 
-			// BOTON SIN ASIGNAR
+
+			// BOTON QUITAR FX
 		case 3:
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && esperarMenu <= 0)
 			{
-				
-			}
-			break;
+				fx = !fx;
 
+				if (fx) {
+				app->audio->PlayFx(sonido_clickar);
+				}
+			}
+
+			break;
 			// BOTON SALIR DE AJUSTES
 		case 4:
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && esperarMenu <= 0)
 			{
+				if (fx) {
+
+				app->audio->PlayFx(sonido_clickar);
+				}
 				menuOpciones = false;
+				numOpciones = 0;
+				posicionSlimeAjustes = 0;
+				esperarMenu = 30;
 			}
 			break;
 
 		}
 
+
+		
+		if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && esperarMenu <= 0)
+	    {
+			if (fx) {
+
+			app->audio->PlayFx(sonido_clickar);
+			}
+			menuOpciones = false;
+			numOpciones = 0;
+			posicionSlimeAjustes = 0;
+			esperarMenu = 30;
+
+		}
 
 		app->render->DrawTexture(FondoOpciones, posicionMenu.x - 200, posicionMenu.y, &rect);
 
@@ -258,14 +344,21 @@ bool Menu::Update(float dt)
 
 		app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y + 40 + posicionSlimeAjustes, &seleccionador);
 
-		if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-	    {
-			menuOpciones = false;
-		}
 
 	}
 
+	if (activarVsync) {
+		SDL_RENDERER_PRESENTVSYNC;
+	}
 
+	if (activarFullscream) {
+
+		SDL_SetWindowFullscreen(app->win->window, SDL_WINDOW_FULLSCREEN);
+	}
+	else if(!activarFullscream)
+	{
+		SDL_SetWindowFullscreen(app->win->window, 0);
+	}
 
 	if (creditos == true)
 	{
@@ -273,7 +366,7 @@ bool Menu::Update(float dt)
 			creditos = false;
 		}
 		//textura fondo menu 
-		app->render->DrawTexture(FondoCreditos, posicionMenu.x - 200, posicionMenu.y, &rect);
+		app->render->DrawTexture(FondoCreditos, posicionMenu.x - 500, posicionMenu.y-200, &rect);
 
 	}
 

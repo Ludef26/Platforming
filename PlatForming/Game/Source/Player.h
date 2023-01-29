@@ -41,6 +41,7 @@ public:
 	PhysBody* pbody;
 
 	int pickCoinFxId;
+	int musica_fondo;
 
 	float limMap = 2.0f;
 

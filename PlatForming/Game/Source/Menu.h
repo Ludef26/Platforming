@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Animation.h"
 
+struct SDL_Window;
+struct SDL_Surface;
 
 class Menu : public Module
 {
@@ -25,10 +27,14 @@ public:
 	bool CleanUp();
 
 public:
+	uint sonido_mover;
+	uint sonido_clickar;
+
 	SDL_Texture* FondoOpciones = NULL;
 	bool menuOpciones = false;
 	int numOpciones = 0;
 	int posicionSlimeAjustes = 0;
+	int esperarMenu = 30;
 
 	SDL_Texture* FondoMenu = NULL;
 	SDL_Texture* FondoCreditos = NULL;
@@ -63,6 +69,9 @@ public:
 
 	bool activarFullscream=false;
 	bool activarVsync = true;
+	bool musica = true;
+	bool fx = true;
+
 };
 
 #endif
