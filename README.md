@@ -14,6 +14,7 @@ https://github.com/Ludef26/Platforming
 * New sistem of lives & HUD
 * Item for recovery health
 * Menu pause 
+* FX for buttons
 
 ## ReImplemented 
 
