@@ -52,7 +52,7 @@ bool Menu::Start()
 
 	FondoOpciones = app->tex->Load("Assets/Screens/Opciones.png");
 
-	app->audio->PlayMusic("Assets/Music/menu_music.ogg");
+	app->audio->PlayMusic("Assets/Audio/Music/menu_music.ogg", 1.0f);
 
 	//-------------------Sprites botones
 	botonJugar = app->tex->Load("Assets/Textures/BotonJugar.png");
@@ -290,6 +290,7 @@ bool Menu::PostUpdate()
 // Called before quitting
 bool Menu::CleanUp()
 {
+	app->menu->Disabled();
 	return true;
 }
 

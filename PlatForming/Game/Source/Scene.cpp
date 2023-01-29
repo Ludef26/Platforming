@@ -57,6 +57,7 @@ bool Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool Scene::Start()
 {
+
 	//Sprite PARADAX
 	tamañoParadax = { 0,  0,3700,720 };
 	paradax1 = app->tex->Load("Assets/Textures/FondoParadax.png");

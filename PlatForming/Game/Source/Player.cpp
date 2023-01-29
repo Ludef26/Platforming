@@ -40,7 +40,6 @@ bool Player::Start() {
 
 	
 	texture = app->tex->Load(texturePath);
-
 	// L07 DONE 5: Add physics to the player - initialize physics body
 	pbody = app->physics->CreateRectangle(position.x + 16, position.y + 16, 32, 20, bodyType::DYNAMIC);
 	pbody->body->SetFixedRotation(true); // Asi no rota la hit box del jugador
