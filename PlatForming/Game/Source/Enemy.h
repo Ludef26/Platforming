@@ -43,7 +43,6 @@ public:
 
 
 	bool die = false;
-
 	bool stopEnem;
 private:
 

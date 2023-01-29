@@ -101,6 +101,11 @@ bool Player::Update()
 			pbody->body->SetTransform(b2Vec2(35, 13), 0);
 		}
 
+		// IR AL CHECKPOINT
+		if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		{
+			pbody->body->SetTransform(b2Vec2(16, 13), 0);
+		}
 
 		//-------------------------GOD MODE-------------------------------------
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)

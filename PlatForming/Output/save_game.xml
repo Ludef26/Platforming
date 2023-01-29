@@ -13,6 +13,6 @@
 	<HUD />
 	<menu />
 	<renderer>
-		<camera x="132" y="-781" />
+		<camera x="-1168" y="-781" />
 	</renderer>
 </save_state>
