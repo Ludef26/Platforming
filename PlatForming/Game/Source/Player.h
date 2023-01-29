@@ -52,6 +52,8 @@ public:
 	bool win = false;
 	int vidas = 3;
 
+	bool puntodeguardar=false;
+
 	bool godMod = false;
 };
 

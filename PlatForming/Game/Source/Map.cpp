@@ -32,7 +32,7 @@ bool Map::Awake(pugi::xml_node& config)
    
     mapFileName = config.child("mapfile").attribute("path").as_string();
     mapFolder = config.child("mapfolder").attribute("path").as_string();
-
+    
 
     return ret;
 }
@@ -363,6 +363,17 @@ bool Map::Load()
     //---------- Cura jugador Sensor
     cura = app->physics->CreateRectangleSensor(app->hud->posicionCurax, app->hud->posicionCuray, 32, 32, bodyType::STATIC);
     cura->ctype = ColliderType::MASVIDA;
+    //-----------
+
+
+    //---------- CHECKPOINT Sensor
+    if (adiosCheckpoint == true)
+    {
+        checkpoint = app->physics->CreateRectangleSensor(app->hud->checkpointx, app->hud->checkpointy, 32, 32, bodyType::STATIC);
+        checkpoint->ctype = ColliderType::CHECKPOINT;
+    }
+    
+    
     //-----------
 
 

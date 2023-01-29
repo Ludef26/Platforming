@@ -32,6 +32,7 @@ enum class ColliderType {
 	WIN,
 	DIE,
 	MASVIDA,
+	CHECKPOINT,
 	UNKNOWN
 	// ..
 };

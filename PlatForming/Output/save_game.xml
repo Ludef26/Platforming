@@ -4,6 +4,7 @@
 	<window />
 	<textures />
 	<audio />
+	<fadetoblack />
 	<:anonymous />
 	<pathfinding />
 	<scene />
@@ -12,6 +13,6 @@
 	<HUD />
 	<menu />
 	<renderer>
-		<camera x="100" y="-781" />
+		<camera x="132" y="-781" />
 	</renderer>
 </save_state>

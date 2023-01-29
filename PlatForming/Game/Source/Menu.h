@@ -45,6 +45,7 @@ public:
 
 	bool abrirMenu = true;
 	bool salirJuego = false;
+	bool creditos = false;
 };
 
 #endif

@@ -186,6 +186,8 @@ public:
 	PhysBody* cura; //Sensor cura
 	bool nocura = true;
 
+	PhysBody* checkpoint; //Sensor cHECKPOINT
+	bool adiosCheckpoint = true;
 	
 
 private:

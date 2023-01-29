@@ -78,33 +78,47 @@ bool Menu::Update(float dt)
 	posicionMenu.x = app->scene->player->position.x;
 	posicionMenu.y = 390;
 
-	if (abrirMenu == true )
+	if (abrirMenu == true)
 	{
-		//textura fondo menu 
-	app->render->DrawTexture(FondoMenu, posicionMenu.x-200, posicionMenu.y, &rect);
+		if (creditos == false)
+		{
+			//textura fondo menu 
 
-	//-------------------------------------botones menu
-	app->render->DrawTexture(botonJugar, posicionMenu.x + 40, posicionMenu.y + 40 , &rectBoton);
-	app->render->DrawTexture(botonCargar, posicionMenu.x + 40, posicionMenu.y + 99 , &rectBoton);
-	app->render->DrawTexture(botonAjustes, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
-	app->render->DrawTexture(botonCreditos, posicionMenu.x + 40, posicionMenu.y + 209 , &rectBoton);
-	app->render->DrawTexture(botonSalir, posicionMenu.x + 40, posicionMenu.y + 264 , &rectBoton);
-	//----------------------------------------
-	//textura slime menu
-	app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y+40 + posicionSlime, &seleccionador);
+			app->render->DrawTexture(FondoMenu, posicionMenu.x - 200, posicionMenu.y, &rect);
 
-	//eleccion menu
-	if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numMenu!=0)
-	{
-		posicionSlime -= 55;
-		numMenu--;
-	}
+		}
+		
 
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numMenu!=4)
-	{
-		posicionSlime += 55;
-		numMenu++;
-	}
+
+			//-------------------------------------botones menu
+			app->render->DrawTexture(botonJugar, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
+			app->render->DrawTexture(botonCargar, posicionMenu.x + 40, posicionMenu.y + 99, &rectBoton);
+			app->render->DrawTexture(botonAjustes, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+			app->render->DrawTexture(botonCreditos, posicionMenu.x + 40, posicionMenu.y + 209, &rectBoton);
+			app->render->DrawTexture(botonSalir, posicionMenu.x + 40, posicionMenu.y + 264, &rectBoton);
+			//----------------------------------------
+			//textura slime menu
+			app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y + 40 + posicionSlime, &seleccionador);
+
+			if (creditos == false)
+			{
+				//eleccion menu
+				if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numMenu != 0)
+				{
+					posicionSlime -= 55;
+					numMenu--;
+				}
+
+				if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numMenu != 4)
+				{
+					posicionSlime += 55;
+					numMenu++;
+				}
+			}
+			
+
+		
+	
 
 	switch (numMenu) {
 
@@ -119,13 +133,15 @@ bool Menu::Update(float dt)
 		}
 		break;
 
+		// BOTON CARGAR
 	case 1:
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
 
 		}
 		break;
-		// BOTON IMAGEN EQUIPO
+
+		// BOTON AJUSTES
 	case 2:
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
@@ -133,16 +149,17 @@ bool Menu::Update(float dt)
 		}
 		break;
 
+		// BOTON IMAGEN EQUIPO
 	case 3:
 		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 		{
-
+			creditos = true;
 		}
 		break;
 
 		// BOTON SALIR DEL JUEGO
 	case 4:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN )
 		{
 			salirJuego = true;
 		}
@@ -154,7 +171,15 @@ bool Menu::Update(float dt)
 
 	}
 
+	if (creditos == true)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
+			creditos = false;
+		}
+		//textura fondo menu 
+		app->render->DrawTexture(FondoMenu, posicionMenu.x - 200, posicionMenu.y, &rect);
 
+	}
 
 	return true;
 }

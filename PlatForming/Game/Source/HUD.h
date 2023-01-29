@@ -66,6 +66,12 @@ public:
 	SDL_Rect rectCura;
 	//--------------
 
+	int checkpointx = 800;
+	int checkpointy = 657;
+	SDL_Texture* texturaCheckpoint = NULL;
+	SDL_Texture* texturaCheckpointCogido = NULL;
+	SDL_Rect tamañoCheckpoint;
+
 
 };
 

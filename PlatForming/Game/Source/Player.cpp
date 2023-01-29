@@ -63,7 +63,7 @@ bool Player::Update()
 	int speed = 5;
 
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && app->menu->creditos == false)
 	{
 		if (app->menu->abrirMenu == false) 
 		{
@@ -258,14 +258,21 @@ bool Player::Update()
 	}
 
 	
-	if (die == true) {
+	if (die == true && puntodeguardar==false) {
 
 		pbody->body->SetTransform(b2Vec2(3, 13), 0); //MUEVE AL JUGADOR A LA POSICION INICIAL
 		vidas--;
-		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
 		die = false;
 		app->scene->enemyFy->die = true;
 	}
+	else if (die == true && puntodeguardar == true) //MUEVE AL JUGADOR A LA POSICION DEL CHECK POINT
+	{
+		pbody->body->SetTransform(b2Vec2(17, 13), 0);
+		vidas--;
+		die = false;
+		app->scene->enemyFy->die = true;
+	}
+
 	//-----------GANAR------------
 	if (win == true) {
 		pbody->body->SetTransform(b2Vec2(3, 13), 0); //MUEVE AL JUGADOR A LA POSICION INICIAL
@@ -273,7 +280,9 @@ bool Player::Update()
 		app->scene->enemyFy->die = true;
 		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
 		app->map->cura->body->SetActive(true);
+		app->map->checkpoint->body->SetActive(true);
 		app->map->nocura = true;
+		app->map->adiosCheckpoint = true;
 
 	}
 	//----------------------------
@@ -281,9 +290,14 @@ bool Player::Update()
 	//-----------PERDER------------
 	if (vidas <= 0)
 	{
+		pbody->body->SetTransform(b2Vec2(3, 13), 0);
 		app->map->cura->body->SetActive(true);
+		app->map->checkpoint->body->SetActive(true);
 		app->map->nocura = true;
 		app->hud->cantidadMonedas = 0;
+		app->hud->tamañoTiempo = app->hud->cantidadTiempo;
+		puntodeguardar = false;
+		app->map->adiosCheckpoint = true;
 	}
 	//----------------------------
 
@@ -373,6 +387,15 @@ void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
 		app->map->nocura = false;
 		}
 		LOG("Collision MAS VIDA");
+		break;
+
+
+
+	case ColliderType::CHECKPOINT:
+		app->map->checkpoint->body->SetActive(false);
+		app->map->adiosCheckpoint = false;
+		puntodeguardar = true;
+		LOG("Collision checkpoint");
 		break;
 	}
 

@@ -51,6 +51,9 @@ bool HUD::Start()
 	curaJugador = app->tex->Load("Assets/Textures/CurarJugador.png");
 
 
+	texturaCheckpoint = app->tex->Load("Assets/Textures/Checkpoint_Desactivado.png");
+	texturaCheckpointCogido = app->tex->Load("Assets/Textures/Checkpoint_Activado.png");
+
 	return true;
 }
 
@@ -72,7 +75,16 @@ bool HUD::Update(float dt)
 	app->render->DrawTexture(curaJugador, posicionCurax-15, posicionCuray-15, &rectCura);
 	}
 	//---------------------------
+	tamañoCheckpoint = { 0, 0, 32,32 };
+	if (app->map->adiosCheckpoint == false)
+	{
+		app->render->DrawTexture(texturaCheckpointCogido, checkpointx - 15, checkpointy - 15, &tamañoCheckpoint);
 
+	}
+	else if (app->map->adiosCheckpoint == true)
+	{
+		app->render->DrawTexture(texturaCheckpoint, checkpointx - 15, checkpointy - 15, &tamañoCheckpoint);
+	}
 
     tamanoHudMonedas = { 0, 0, 133,47 };
 	rectPerder = { 0, 0, 1280,720 };
