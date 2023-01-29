@@ -2,6 +2,10 @@
 #define __WINDOW_H__
 
 #include "Module.h"
+#include "Entity.h"
+#include "Point.h"
+#include "SDL/include/SDL.h"
+#include "Item.h"
 
 struct SDL_Window;
 struct SDL_Surface;

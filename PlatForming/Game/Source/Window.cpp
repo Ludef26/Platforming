@@ -3,6 +3,7 @@
 
 #include "Defs.h"
 #include "Log.h"
+#include "Menu.h"
 
 #include "SDL/include/SDL.h"
 
@@ -45,8 +46,9 @@ bool Window::Awake(pugi::xml_node& config)
 		height = config.child("resolution").attribute("height").as_int();; //get from config 
 		scale = config.child("resolution").attribute("scale").as_int();; //get from config 
 
-		if (fullscreen == true) flags |= SDL_WINDOW_FULLSCREEN;
-		if (borderless == true) flags |= SDL_WINDOW_BORDERLESS;
+		if (app->menu->activarFullscream == true ) flags |= SDL_WINDOW_FULLSCREEN;
+		if (app->menu->activarFullscream == false) flags |= SDL_WINDOW_BORDERLESS;
+
 		if (resizable == true) flags |= SDL_WINDOW_RESIZABLE;
 		if (fullscreen_window == true) flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 

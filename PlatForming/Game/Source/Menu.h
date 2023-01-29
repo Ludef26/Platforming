@@ -25,7 +25,13 @@ public:
 	bool CleanUp();
 
 public:
+	SDL_Texture* FondoOpciones = NULL;
+	bool menuOpciones = false;
+	int numOpciones = 0;
+	int posicionSlimeAjustes = 0;
+
 	SDL_Texture* FondoMenu = NULL;
+	SDL_Texture* FondoCreditos = NULL;
 	SDL_Texture* SlimeMenu = NULL;
 	SDL_Rect rect;
 	SDL_Rect rectBoton;
@@ -41,11 +47,22 @@ public:
 	SDL_Texture* botonCreditos = NULL;
 	SDL_Texture* botonSalir = NULL;
 
+
+	//botones opciones
+	SDL_Texture* botonMusica = NULL;
+	SDL_Texture* botonFullScream = NULL;
+	SDL_Texture* botonVSYNC = NULL;
+	SDL_Texture* botonSINASIGNAR = NULL;
+	SDL_Texture* botonSalirAjustes = NULL;
+
 	int posicionSlime = 0;
 
 	bool abrirMenu = true;
 	bool salirJuego = false;
 	bool creditos = false;
+
+	bool activarFullscream=false;
+	bool activarVsync = true;
 };
 
 #endif

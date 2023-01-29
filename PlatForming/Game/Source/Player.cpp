@@ -63,7 +63,7 @@ bool Player::Update()
 	int speed = 5;
 
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && app->menu->creditos == false)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && app->menu->creditos == false && app->menu->menuOpciones == false)
 	{
 		if (app->menu->abrirMenu == false) 
 		{

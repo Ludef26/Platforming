@@ -47,6 +47,10 @@ bool Menu::Start()
 	
 	FondoMenu = app->tex->Load("Assets/Screens/Menu.png");
 	SlimeMenu = app->tex->Load("Assets/Textures/SlimeMenu.png");
+	
+	FondoCreditos = app->tex->Load("Assets/Screens/Creditos.png");
+
+	FondoOpciones = app->tex->Load("Assets/Screens/Opciones.png");
 
 	//-------------------Sprites botones
 	botonJugar = app->tex->Load("Assets/Textures/BotonJugar.png");
@@ -54,6 +58,14 @@ bool Menu::Start()
 	botonAjustes = app->tex->Load("Assets/Textures/BotonAjustes.png");
 	botonCreditos = app->tex->Load("Assets/Textures/BotonCreditos.png");
 	botonSalir = app->tex->Load("Assets/Textures/BotonSalir.png");
+	//-------------------------
+
+	//-------------------Sprites botones
+	botonMusica = app->tex->Load("Assets/Textures/botonMusica.png");
+	botonFullScream = app->tex->Load("Assets/Textures/botonFullScream.png");
+	botonVSYNC = app->tex->Load("Assets/Textures/botonVSYNC.png");
+	botonSINASIGNAR = app->tex->Load("Assets/Textures/botonSINASIGNAR.png");
+	botonSalirAjustes = app->tex->Load("Assets/Textures/botonSalirAjustes.png");
 	//-------------------------
 
 	app->scene->player->godMod = true;	
@@ -80,15 +92,11 @@ bool Menu::Update(float dt)
 
 	if (abrirMenu == true)
 	{
-		if (creditos == false)
+		if (creditos == false && menuOpciones ==false)
 		{
 			//textura fondo menu 
 
 			app->render->DrawTexture(FondoMenu, posicionMenu.x - 200, posicionMenu.y, &rect);
-
-		}
-		
-
 
 			//-------------------------------------botones menu
 			app->render->DrawTexture(botonJugar, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
@@ -100,76 +108,162 @@ bool Menu::Update(float dt)
 			//textura slime menu
 			app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y + 40 + posicionSlime, &seleccionador);
 
-			if (creditos == false)
-			{
+
 				//eleccion menu
-				if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numMenu != 0)
-				{
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numMenu != 0)
+			{
 					posicionSlime -= 55;
 					numMenu--;
-				}
+			}
 
-				if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numMenu != 4)
-				{
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numMenu != 4)
+			{
 					posicionSlime += 55;
 					numMenu++;
-				}
 			}
-			
 
+		}
 		
-	
 
-	switch (numMenu) {
+		switch (numMenu) {
 
-		//BOTON JUGAR
-	case 0:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
-			app->scene->enemyFy->stopEnem = false;
-			app->menu->Disable();
-			app->scene->player->godMod = false;
-			app->menu->abrirMenu = false;
+			//BOTON JUGAR
+			case 0:
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+				{
+					app->scene->enemyFy->stopEnem = false;
+					app->menu->Disable();
+					app->scene->player->godMod = false;
+					app->menu->abrirMenu = false;
+					menuOpciones = false;
+					creditos = false;
+				
+				}
+				break;
+
+			// BOTON CARGAR
+			case 1:
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+				{
+		
+				}
+				break;
+
+			// BOTON AJUSTES
+			case 2:
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+				{
+					menuOpciones = true;
+				}
+				break;
+
+			// BOTON IMAGEN EQUIPO
+			case 3:
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+				{
+					creditos = true;
+				}
+				break;
+
+			// BOTON SALIR DEL JUEGO
+			case 4:
+				if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN )
+				{
+					salirJuego = true;
+				}
+				break;
+
 		}
-		break;
 
-		// BOTON CARGAR
-	case 1:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
 
-		}
-		break;
-
-		// BOTON AJUSTES
-	case 2:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
-
-		}
-		break;
-
-		// BOTON IMAGEN EQUIPO
-	case 3:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-		{
-			creditos = true;
-		}
-		break;
-
-		// BOTON SALIR DEL JUEGO
-	case 4:
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN )
-		{
-			salirJuego = true;
-		}
-		break;
 
 	}
 
 
+	if (menuOpciones) 
+	{
+		
+		
+
+		//eleccion menu
+		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && numOpciones != 0)
+		{
+			posicionSlimeAjustes -= 55;
+			numOpciones--;
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN && numOpciones != 4)
+		{
+			posicionSlimeAjustes += 55;
+			numOpciones++;
+		}
+
+
+		switch (numOpciones) {
+
+			//BOTON MUSICA
+		case 0:
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				
+			}
+			break;
+
+			// BOTON FULLSCREEN
+		case 1:
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				activarFullscream = !activarFullscream;
+			}
+			break;
+
+			// BOTON VSYNC
+		case 2:
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				
+			}
+			break;
+
+			// BOTON SIN ASIGNAR
+		case 3:
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				
+			}
+			break;
+
+			// BOTON SALIR DE AJUSTES
+		case 4:
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			{
+				menuOpciones = false;
+			}
+			break;
+
+		}
+
+
+		app->render->DrawTexture(FondoOpciones, posicionMenu.x - 200, posicionMenu.y, &rect);
+
+		//-------------------------------------botones menu
+		app->render->DrawTexture(botonMusica, posicionMenu.x + 40, posicionMenu.y + 40, &rectBoton);
+		app->render->DrawTexture(botonFullScream, posicionMenu.x + 40, posicionMenu.y + 99, &rectBoton);
+		app->render->DrawTexture(botonVSYNC, posicionMenu.x + 40, posicionMenu.y + 154, &rectBoton);
+		app->render->DrawTexture(botonSINASIGNAR, posicionMenu.x + 40, posicionMenu.y + 209, &rectBoton);
+		app->render->DrawTexture(botonSalirAjustes, posicionMenu.x + 40, posicionMenu.y + 264, &rectBoton);
+		//----------------------------------------
+
+		app->render->DrawTexture(SlimeMenu, posicionMenu.x, posicionMenu.y + 40 + posicionSlimeAjustes, &seleccionador);
+
+		if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	    {
+			menuOpciones = false;
+		}
 
 	}
+
+
 
 	if (creditos == true)
 	{
@@ -177,7 +271,7 @@ bool Menu::Update(float dt)
 			creditos = false;
 		}
 		//textura fondo menu 
-		app->render->DrawTexture(FondoMenu, posicionMenu.x - 200, posicionMenu.y, &rect);
+		app->render->DrawTexture(FondoCreditos, posicionMenu.x - 200, posicionMenu.y, &rect);
 
 	}
 
